@@ -1,0 +1,25 @@
+# Godot
+.godot/
+*.import.tmp
+
+# Assets con copyright (© SUPERHOTEX, uso personal)
+assets/cards/
+assets/bg/
+assets/cardback.webp
+*.pdf
+
+# Secretos / config local
+addons/godot-firebase/.env
+*.keystore
+
+# Exportaciones
+export/
+
+# Firebase
+firebase/.firebase/
+data/card_summaries_es.json
+
+# Capturas y salidas de pruebas: muestran arte con copyright (© SUPERHOTEX); se regeneran con los scripts de captura
+docs/revision/capturas/
+docs/revision/salidas/
+assets/cardback.webp.import

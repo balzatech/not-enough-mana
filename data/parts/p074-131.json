@@ -1,0 +1,507 @@
+[
+  {
+    "id": "magic_shield",
+    "name": "Magic Shield",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Lux Clypeus",
+    "text": "Prevents 2 points of spell damage.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 11,
+    "pages": [
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "mirror_shield",
+    "name": "Mirror Shield",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Speculum Clypeus",
+    "text": "Redirects up to 2 points of spell damage towards any wizard.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 5,
+    "pages": [
+      85,
+      86,
+      87,
+      88,
+      89
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 2 mana + 1 carta defensiva (icono de rombo en la banda)."
+  },
+  {
+    "id": "frozen_bunny",
+    "name": "Frozen Bunny",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "",
+    "text": "Prevents all damage from a selected spell.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 0,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 1,
+    "pages": [
+      90
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Sin mana; coste = 1 hechizo de hielo (triangulo azul invertido). Sin encantamiento impreso."
+  },
+  {
+    "id": "last_wish",
+    "name": "Last Wish",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Supremum Exitum",
+    "text": "If the damage from an opponent’s spell kills you, you cause the same amount of damage to the attacker before losing your health points. You still die afterwards.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 3,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      91
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "magic_capture",
+    "name": "Magic Capture",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Sum Malus Furem",
+    "text": "Steal a card from the top of the discard pile.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 1,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      92,
+      93,
+      94
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 1 mana + 1 carta defensiva."
+  },
+  {
+    "id": "annihilation",
+    "name": "Annihilation",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Postremus Eversio",
+    "text": "Discard any card in the game (including a spell cast by an opponent) to the discard pile.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "card_in_play",
+    "quantity": 2,
+    "pages": [
+      95,
+      96
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 4 mana + 1 hechizo de fuego (triangulo rojo)."
+  },
+  {
+    "id": "heal",
+    "name": "Heal",
+    "type": "support",
+    "element": "none",
+    "incantation": "Magis Salutem",
+    "text": "The target gains 1{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 10,
+    "pages": [
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "greater_heal",
+    "name": "Greater Heal",
+    "type": "support",
+    "element": "none",
+    "incantation": "Sanus Maximum",
+    "text": "The target gains 2{life}.",
+    "cost": {
+      "mana": 4,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 4,
+    "pages": [
+      107,
+      108,
+      109,
+      110
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "book_exchange",
+    "name": "Book Exchange",
+    "type": "support",
+    "element": "none",
+    "incantation": "Verto Voluminus",
+    "text": "Exchange your hand with the hand of a selected wizard.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "other",
+    "quantity": 2,
+    "pages": [
+      111,
+      112
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 3 mana + 1 hechizo electrico (icono naranja de rayo)."
+  },
+  {
+    "id": "magic_hand",
+    "name": "Magic Hand",
+    "type": "support",
+    "element": "none",
+    "incantation": "Volumen Furtum",
+    "text": "Look at the cards in selected wizard’s hand and steal one of them for yourself.",
+    "cost": {
+      "mana": 3,
+      "cards": []
+    },
+    "target": "other",
+    "quantity": 2,
+    "pages": [
+      113,
+      114
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "force_field",
+    "name": "Force Field",
+    "type": "support",
+    "element": "none",
+    "incantation": "Viribus Defensionem",
+    "text": "The target cannot be affected by spells until your next turn.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 3,
+    "pages": [
+      115,
+      116,
+      117
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 3 mana + 1 carta defensiva."
+  },
+  {
+    "id": "potent_elixir",
+    "name": "Potent Elixir",
+    "type": "support",
+    "element": "none",
+    "incantation": "Fortis Suci",
+    "text": "Doubles {mana} provided by your next mana potion.",
+    "cost": {
+      "mana": 0,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 4,
+    "pages": [
+      118,
+      119,
+      120,
+      121
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Sin mana; coste = 1 carta de soporte (circulo verde)."
+  },
+  {
+    "id": "space_shift",
+    "name": "Space Shift",
+    "type": "support",
+    "element": "none",
+    "incantation": "Volumen Satiata",
+    "text": "Discard all cards from your hand and draw a full hand again.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 2,
+    "pages": [
+      122,
+      123
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 2 mana + 1 carta de soporte."
+  },
+  {
+    "id": "curse_of_rules",
+    "name": "Curse of Rules",
+    "type": "curse",
+    "element": "none",
+    "incantation": "A Szabályok Atok",
+    "text": "Place this card in front of yourself and establish a rule, for example: “no swearing.” From now on, any wizard who breaks the rule loses 1{mana}.\nThe curse works on the caster as well.\nThe rule cannot contradict the game rules.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      124,
+      125,
+      126
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Persistente delante de quien la lanza. Icono confirmado: mana."
+  },
+  {
+    "id": "curse_of_the_elder",
+    "name": "Curse of the Elder",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Mamája Olyan Büdös",
+    "text": "All wizards older than the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      127
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Misma edad: no afectado (lectura literal)."
+  },
+  {
+    "id": "curse_of_the_younger",
+    "name": "Curse of the Younger",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Menj Vissza Kozóba",
+    "text": "All wizards younger than the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      128
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Misma edad: no afectado (lectura literal)."
+  },
+  {
+    "id": "curse_of_vigour",
+    "name": "Curse of Vigour",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Ragaszkodom Segged Tűt",
+    "text": "All wizards with at least as many {life} as the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      129
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Iconos confirmados: compara vida, quita mana. Incluye a quien la lanza (lectura literal, ver AMBIGUEDADES)."
+  },
+  {
+    "id": "curse_of_even",
+    "name": "Curse of Even",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Húsz Kecske Enni",
+    "text": "All wizards who were born in an even month lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      130
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Incluye a quien la lanza si cumple (ver AMBIGUEDADES)."
+  },
+  {
+    "id": "curse_of_odd",
+    "name": "Curse of Odd",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Tizenhárom Hálószoba",
+    "text": "All wizards who were born in an odd month lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      131
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Incluye a quien la lanza si cumple (ver AMBIGUEDADES)."
+  }
+]

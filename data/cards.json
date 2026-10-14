@@ -1,0 +1,1645 @@
+[
+  {
+    "id": "quick_reference",
+    "name": "Quick Reference",
+    "type": "non_playable",
+    "element": "none",
+    "incantation": "",
+    "text": "SETUP AND GENERAL RULES\n1. Shuffle the deck.\n2. Each wizard draws 5 cards. If you draw an Event card, discard it and draw a new card.\n3. Each wizard gets 10{life}.\nYou can drink mana potions at any point in the game. Each potion grants 3{mana}.\nDefeat all other wizards to win!\nDURING YOUR TURN\n1. Draw cards up to your hand limit (normally 5). If you draw an Event card, play it immediately and draw a new card.\n2. Perform any number of these actions in any order, each as many times as you want:\n- Play a card.\n- Exchange cards from your hand for new ones from the deck (first one costs 1{mana}, second - 2{mana}, and so on).\n- Discard any number of cards.\n3. Announce your turn's end.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 6,
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "playable": false,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Carta de referencia; no entra en el mazo."
+  },
+  {
+    "id": "blank",
+    "name": "Blank",
+    "type": "non_playable",
+    "element": "none",
+    "incantation": "",
+    "text": "",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 4,
+    "pages": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "playable": false,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Páginas completamente en blanco (verificado por píxeles); no entran en el mazo."
+  },
+  {
+    "id": "fire_arrow",
+    "name": "Fire Arrow",
+    "type": "offensive",
+    "element": "fire",
+    "incantation": "Ignis Sagitta",
+    "text": "The target loses 1{life}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 8,
+    "pages": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "fireball",
+    "name": "Fireball",
+    "type": "offensive",
+    "element": "fire",
+    "incantation": "Globus Ignea",
+    "text": "The target loses 2{life}.",
+    "cost": {
+      "mana": 1,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 6,
+    "pages": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "meteor_shower",
+    "name": "Meteor Shower",
+    "type": "offensive",
+    "element": "fire",
+    "incantation": "Pandemonium Meteorum",
+    "text": "The target loses 2{life}.\nAll wizards sitting next to the target lose 1{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 3,
+    "pages": [
+      25,
+      26,
+      27
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "armageddon",
+    "name": "Armageddon",
+    "type": "offensive",
+    "element": "fire",
+    "incantation": "Finem Ignea Semper",
+    "text": "All wizards (including the caster) lose 3{life}.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        },
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        },
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "all",
+    "quantity": 1,
+    "pages": [
+      28
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "mana_implosion",
+    "name": "Mana Implosion",
+    "type": "offensive",
+    "element": "fire",
+    "incantation": "Igne Doloris",
+    "text": "The target loses 2{life} and 2{mana}.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "curse",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 2,
+    "pages": [
+      29,
+      30
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono de la banda de coste: ojo morado = tipo maldición (mismo icono que Curse of Rules)."
+  },
+  {
+    "id": "ice_bolt",
+    "name": "Ice Bolt",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Frigus Proiectum",
+    "text": "The target loses 1{life} and must discard 1 card from their hand.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 6,
+    "pages": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "blizzard",
+    "name": "Blizzard",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Nix Tempestas",
+    "text": "The target and all wizards sitting next to the target lose 1{life}.\nAll affected wizards must discard 1 card from their hand.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 3,
+    "pages": [
+      37,
+      38,
+      39
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "ice_boomerang",
+    "name": "Ice Boomerang",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Glacies Hastilum",
+    "text": "The target loses 3{life}; the caster loses 1{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 3,
+    "pages": [
+      40,
+      41,
+      42
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "vampiric_touch",
+    "name": "Vampiric Touch",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Lamia Vita Furtum",
+    "text": "The target loses 2{life}; the caster gains 1{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 5,
+    "pages": [
+      43,
+      44,
+      45,
+      46,
+      47
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono de la banda de coste: círculo verde = tipo soporte (mismo icono que Heal)."
+  },
+  {
+    "id": "freeze",
+    "name": "Freeze",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Nix Carcere",
+    "text": "The target loses their next turn.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 2,
+    "pages": [
+      48,
+      49
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "icy_grasp",
+    "name": "Icy Grasp",
+    "type": "offensive",
+    "element": "ice",
+    "incantation": "Duratus Supellectilem",
+    "text": "The target loses 2{life} and you can steal a random card from their hand.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "curse",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 2,
+    "pages": [
+      50,
+      51
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono de la banda de coste: ojo morado = tipo maldición."
+  },
+  {
+    "id": "lightning",
+    "name": "Lightning",
+    "type": "offensive",
+    "element": "electric",
+    "incantation": "Curva Electrica",
+    "text": "The target loses 2{life}.\nThe target may use another Lightning card in order to increase the damage of the spell by 1 and redirect it to another wizard.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 10,
+    "pages": [
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "electric_explosion",
+    "name": "Electric Explosion",
+    "type": "offensive",
+    "element": "electric",
+    "incantation": "Magnum Crepitus Electrica",
+    "text": "All wizards except the caster lose 2{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "all_others",
+    "quantity": 3,
+    "pages": [
+      62,
+      63,
+      64
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "La banda de coste muestra el icono de fuego (círculo rojo, triángulo), no el eléctrico; transcrito tal cual."
+  },
+  {
+    "id": "blinding_flash",
+    "name": "Blinding Flash",
+    "type": "offensive",
+    "element": "electric",
+    "incantation": "Lucidus Ardeo",
+    "text": "The target loses 2{life}.\nThe target cannot cast offensive spells during their next turn.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 2,
+    "pages": [
+      65,
+      66
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "electric_arc",
+    "name": "Electric Arc",
+    "type": "offensive",
+    "element": "electric",
+    "incantation": "Arcus Tonitrui",
+    "text": "Two selected targets lose 1{life}.",
+    "cost": {
+      "mana": 1,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "two",
+    "quantity": 5,
+    "pages": [
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "paralysing_touch",
+    "name": "Paralysing Touch",
+    "type": "offensive",
+    "element": "electric",
+    "incantation": "Stillabunt Stercore",
+    "text": "The target loses 2{life} and must discard 2 cards from their hand.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "curse",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 2,
+    "pages": [
+      72,
+      73
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono de la banda de coste: ojo morado = tipo maldición."
+  },
+  {
+    "id": "magic_shield",
+    "name": "Magic Shield",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Lux Clypeus",
+    "text": "Prevents 2 points of spell damage.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 11,
+    "pages": [
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "mirror_shield",
+    "name": "Mirror Shield",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Speculum Clypeus",
+    "text": "Redirects up to 2 points of spell damage towards any wizard.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 5,
+    "pages": [
+      85,
+      86,
+      87,
+      88,
+      89
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 2 mana + 1 carta defensiva (icono de rombo en la banda)."
+  },
+  {
+    "id": "frozen_bunny",
+    "name": "Frozen Bunny",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "",
+    "text": "Prevents all damage from a selected spell.\nDefensive card – you can use it anytime, on any wizard.",
+    "cost": {
+      "mana": 0,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 1,
+    "pages": [
+      90
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Sin mana; coste = 1 hechizo de hielo (triangulo azul invertido). Sin encantamiento impreso."
+  },
+  {
+    "id": "last_wish",
+    "name": "Last Wish",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Supremum Exitum",
+    "text": "If the damage from an opponent’s spell kills you, you cause the same amount of damage to the attacker before losing your health points. You still die afterwards.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 3,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      91
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "magic_capture",
+    "name": "Magic Capture",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Sum Malus Furem",
+    "text": "Steal a card from the top of the discard pile.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 1,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      92,
+      93,
+      94
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 1 mana + 1 carta defensiva."
+  },
+  {
+    "id": "annihilation",
+    "name": "Annihilation",
+    "type": "defensive",
+    "element": "none",
+    "incantation": "Postremus Eversio",
+    "text": "Discard any card in the game (including a spell cast by an opponent) to the discard pile.\nDefensive card – you can use it anytime.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "card_in_play",
+    "quantity": 2,
+    "pages": [
+      95,
+      96
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": true,
+    "is_spell": false,
+    "notes": "Coste: 4 mana + 1 hechizo de fuego (triangulo rojo)."
+  },
+  {
+    "id": "heal",
+    "name": "Heal",
+    "type": "support",
+    "element": "none",
+    "incantation": "Magis Salutem",
+    "text": "The target gains 1{life}.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 10,
+    "pages": [
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "greater_heal",
+    "name": "Greater Heal",
+    "type": "support",
+    "element": "none",
+    "incantation": "Sanus Maximum",
+    "text": "The target gains 2{life}.",
+    "cost": {
+      "mana": 4,
+      "cards": []
+    },
+    "target": "single",
+    "quantity": 4,
+    "pages": [
+      107,
+      108,
+      109,
+      110
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "book_exchange",
+    "name": "Book Exchange",
+    "type": "support",
+    "element": "none",
+    "incantation": "Verto Voluminus",
+    "text": "Exchange your hand with the hand of a selected wizard.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "other",
+    "quantity": 2,
+    "pages": [
+      111,
+      112
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 3 mana + 1 hechizo electrico (icono naranja de rayo)."
+  },
+  {
+    "id": "magic_hand",
+    "name": "Magic Hand",
+    "type": "support",
+    "element": "none",
+    "incantation": "Volumen Furtum",
+    "text": "Look at the cards in selected wizard’s hand and steal one of them for yourself.",
+    "cost": {
+      "mana": 3,
+      "cards": []
+    },
+    "target": "other",
+    "quantity": 2,
+    "pages": [
+      113,
+      114
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": ""
+  },
+  {
+    "id": "force_field",
+    "name": "Force Field",
+    "type": "support",
+    "element": "none",
+    "incantation": "Viribus Defensionem",
+    "text": "The target cannot be affected by spells until your next turn.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "single",
+    "quantity": 3,
+    "pages": [
+      115,
+      116,
+      117
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 3 mana + 1 carta defensiva."
+  },
+  {
+    "id": "potent_elixir",
+    "name": "Potent Elixir",
+    "type": "support",
+    "element": "none",
+    "incantation": "Fortis Suci",
+    "text": "Doubles {mana} provided by your next mana potion.",
+    "cost": {
+      "mana": 0,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 4,
+    "pages": [
+      118,
+      119,
+      120,
+      121
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Sin mana; coste = 1 carta de soporte (circulo verde)."
+  },
+  {
+    "id": "space_shift",
+    "name": "Space Shift",
+    "type": "support",
+    "element": "none",
+    "incantation": "Volumen Satiata",
+    "text": "Discard all cards from your hand and draw a full hand again.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 2,
+    "pages": [
+      122,
+      123
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Coste: 2 mana + 1 carta de soporte."
+  },
+  {
+    "id": "curse_of_rules",
+    "name": "Curse of Rules",
+    "type": "curse",
+    "element": "none",
+    "incantation": "A Szabályok Atok",
+    "text": "Place this card in front of yourself and establish a rule, for example: “no swearing.” From now on, any wizard who breaks the rule loses 1{mana}.\nThe curse works on the caster as well.\nThe rule cannot contradict the game rules.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      124,
+      125,
+      126
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Persistente delante de quien la lanza. Icono confirmado: mana."
+  },
+  {
+    "id": "curse_of_the_elder",
+    "name": "Curse of the Elder",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Mamája Olyan Büdös",
+    "text": "All wizards older than the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      127
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Misma edad: no afectado (lectura literal)."
+  },
+  {
+    "id": "curse_of_the_younger",
+    "name": "Curse of the Younger",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Menj Vissza Kozóba",
+    "text": "All wizards younger than the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      128
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Misma edad: no afectado (lectura literal)."
+  },
+  {
+    "id": "curse_of_vigour",
+    "name": "Curse of Vigour",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Ragaszkodom Segged Tűt",
+    "text": "All wizards with at least as many {life} as the caster lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      129
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Iconos confirmados: compara vida, quita mana. Incluye a quien la lanza (lectura literal, ver AMBIGUEDADES)."
+  },
+  {
+    "id": "curse_of_even",
+    "name": "Curse of Even",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Húsz Kecske Enni",
+    "text": "All wizards who were born in an even month lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      130
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Incluye a quien la lanza si cumple (ver AMBIGUEDADES)."
+  },
+  {
+    "id": "curse_of_odd",
+    "name": "Curse of Odd",
+    "type": "curse",
+    "element": "none",
+    "incantation": "Tizenhárom Hálószoba",
+    "text": "All wizards who were born in an odd month lose 3{mana}.",
+    "cost": {
+      "mana": 1,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      131
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": true,
+    "notes": "Icono confirmado: mana. Incluye a quien la lanza si cumple (ver AMBIGUEDADES)."
+  },
+  {
+    "id": "fireproof_tiara",
+    "name": "Fireproof Tiara",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, fire spells deal 1 less damage to you.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      132
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "padded_boots",
+    "name": "Padded Boots",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, ice spells deal 1 less damage to you.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      133
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "faradays_cloak",
+    "name": "Faraday's Cloak",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, electricity spells deal 1 less damage to you.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      134
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "wild_fire",
+    "name": "Wild Fire",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, your fire spells deal 1 additional damage.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 5,
+      "cards": [
+        {
+          "by": "element",
+          "value": "fire",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      135
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "dragon_glass",
+    "name": "Dragon Glass",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, your ice spells deal 1 additional damage.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 5,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      136
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "tesla_coil",
+    "name": "Tesla Coil",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, your electricity spells deal 1 additional damage.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 5,
+      "cards": [
+        {
+          "by": "element",
+          "value": "electric",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      137
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "spellbook",
+    "name": "Spellbook",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, your hand size limit increases by 1 card.\nYou cannot have more than one Spellbook.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      138,
+      139,
+      140
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "magic_cap",
+    "name": "Magic Cap",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, you can discard the Cap to avoid losing any amount of {mana} or {life} once.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 2,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 3,
+    "pages": [
+      141,
+      142,
+      143
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Iconos verificados con la imagen: maná (gota azul) o vida (corazón rojo)."
+  },
+  {
+    "id": "runic_armor",
+    "name": "Runic Armor",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, grants invulnerability to curses.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 4,
+      "cards": [
+        {
+          "by": "type",
+          "value": "defensive",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      144
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "scroll_of_elements",
+    "name": "Scroll of Elements",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, you can use the Scroll of Elements anytime as a replacement for any card required by any other card.\nDiscard this card after use.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 2,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 7,
+    "pages": [
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "transformation_glove",
+    "name": "Transformation Glove",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, you can discard 1 card from your hand and draw a new one once per turn.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "element",
+          "value": "ice",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      152
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "twardowskys_mirror",
+    "name": "Twardowsky's Mirror",
+    "type": "artifact",
+    "element": "none",
+    "incantation": "",
+    "text": "While equipped, you can peek at the top card from the draw pile once per turn.\nPlace this card in front of yourself to equip it.",
+    "cost": {
+      "mana": 3,
+      "cards": [
+        {
+          "by": "type",
+          "value": "support",
+          "count": 1
+        }
+      ]
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      153
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "visit_of_the_archmage",
+    "name": "Visit of the Archmage",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "All wizards lose 2{life} unless they immediately drink a mana potion.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      154
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Icono verificado: vida (corazón)."
+  },
+  {
+    "id": "not_enough_mana",
+    "name": "Not Enough Mana",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, all damage also forces victims to lose the same amount of {mana}.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      155
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Icono verificado: maná (gota)."
+  },
+  {
+    "id": "shot_glass",
+    "name": "Shot Glass",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, drinking a mana potion provides 1{mana} less.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      156
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "La imagen muestra '1{mana} less' (pdftotext omite el icono)."
+  },
+  {
+    "id": "fire_storm",
+    "name": "Fire Storm",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, fire spells cost 1{mana} more and deal 1 more damage.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      157
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "La imagen muestra '1{mana} more': el sobrecoste es de maná."
+  },
+  {
+    "id": "ice_storm",
+    "name": "Ice Storm",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, ice spells cost 1{mana} more and deal 1 more damage.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      158
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "La imagen muestra '1{mana} more': el sobrecoste es de maná."
+  },
+  {
+    "id": "lightning_storm",
+    "name": "Lightning Storm",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, electricity spells cost 1{mana} more and deal 1 more damage.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      159
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "La imagen muestra '1{mana} more': el sobrecoste es de maná."
+  },
+  {
+    "id": "mana_focus",
+    "name": "Mana Focus",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, you can ignore received damage and instead lose the same amount of {mana}.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      160
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Icono verificado: maná (gota)."
+  },
+  {
+    "id": "disrupted_gravity",
+    "name": "Disrupted Gravity",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "Until the next event is drawn, each wizard's hand size limit increases by 1 card.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      161
+    ],
+    "playable": true,
+    "persistent": true,
+    "defensive": false,
+    "is_spell": false,
+    "notes": ""
+  },
+  {
+    "id": "blessing",
+    "name": "Blessing",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "All wizards gain 2{life}.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      162
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Icono verificado: vida (corazón). Con el máximo de 10 de vida."
+  },
+  {
+    "id": "warp_discharge",
+    "name": "Warp Discharge",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "The wizard with the lowest amount of {mana} loses 1{life}. Other wizards gain 1{life}.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      163
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Iconos verificados con la imagen a 250 ppp: se compara el MANÁ (gota azul) y se pierde/gana VIDA (corazón). Empate en el mínimo: pierden todos los empatados (ver docs/AMBIGUEDADES.md)."
+  },
+  {
+    "id": "elixir_transmutation",
+    "name": "Elixir Transmutation",
+    "type": "event",
+    "element": "none",
+    "incantation": "",
+    "text": "All wizards can gain any amount of {life} by spending 2{mana} for each.\nPlay immediately after drawing, then draw a new card.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      164
+    ],
+    "playable": true,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Iconos verificados con la imagen a 250 ppp: se gana VIDA (corazón) pagando 2 de MANÁ (gota) por cada punto. Duración no indicada: se toma como una oportunidad única al revelarse el evento (ver docs/AMBIGUEDADES.md).",
+    "needs_human_review": true
+  },
+  {
+    "id": "anti_joker",
+    "name": "Anti-Joker",
+    "type": "non_playable",
+    "element": "none",
+    "incantation": "",
+    "text": "This card is useless.",
+    "cost": {
+      "mana": 0,
+      "cards": []
+    },
+    "target": "none",
+    "quantity": 1,
+    "pages": [
+      165
+    ],
+    "playable": false,
+    "persistent": false,
+    "defensive": false,
+    "is_spell": false,
+    "notes": "Anti-Joker: no entra en el mazo."
+  }
+]
