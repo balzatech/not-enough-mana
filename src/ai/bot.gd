@@ -126,8 +126,6 @@ static func choose_among(view: Dictionary, pid: String, legal_all: Array, rng_st
 			legal.append(a)
 	var cands: Array = []
 	var pr: Dictionary = _first_prompt(view, pid)
-	if not pr.is_empty():
-		legal = legal + _hidden_choices(view, pid, pr, legal)
 	# Nunca beber voluntariamente la poción que elimina por Too Much Mana.
 	if not potion_room(view, pid, 0):
 		var safe: Array = []
@@ -181,25 +179,6 @@ static func _fallback(legal: Array, has_prompt: bool = false) -> Array:
 		if not (has_prompt and String((a as Dictionary)["type"]) == Types.ACTION_DRINK_POTION):
 			return [{"action": a, "score": 0.0}]
 	return []
-
-
-## Magic Hand (prompt oculto): CHOOSE_CARDS [iid] por cada carta de la mano
-## observada en reveals (misma información que ve el humano).
-static func _hidden_choices(view: Dictionary, pid: String, pr: Dictionary, legal: Array) -> Array:
-	var out: Array = []
-	if String(pr["kind"]) != Types.PROMPT_CHOOSE_CARD:
-		return out
-	var data: Dictionary = pr["data"]
-	if not bool(data.get("hidden", false)):
-		return out
-	var pr_id: int = int(pr["id"])
-	for a: Variant in legal:
-		var ad: Dictionary = a
-		if String(ad["type"]) == Types.ACTION_CHOOSE_CARDS and int(ad.get("prompt_id", -1)) == pr_id:
-			return out
-	for c: Variant in ActionOptions.revealed_hand(view, pid, String(data.get("from", ""))):
-		out.append(Types.make_action_choose_cards(pid, pr_id, [int((c as Dictionary)["iid"])]))
-	return out
 
 
 static func _first_prompt(view: Dictionary, pid: String) -> Dictionary:

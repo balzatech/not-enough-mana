@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T9: heurísticas del bot (una por test). Usa el catálogo real y los efectos
 ## falsos de los helpers del motor (los reales se registran en T6a-c).
 
@@ -6,6 +6,7 @@ const H = preload("res://tests/fixtures/engine_helpers.gd")
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	CardCatalog.load_json()
 	H.register_fake_effects()

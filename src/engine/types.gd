@@ -207,6 +207,13 @@ const ACTION_DECLINE: String = "DECLINE"               ## Rechazar un prompt opc
 const ACTION_USE_ARTIFACT: String = "USE_ARTIFACT"     ## Activar un artefacto en mesa (Glove, Mirror, Magic Cap…)
 const ACTION_USE_EVENT: String = "USE_EVENT"           ## Usar la opción del evento activo (p. ej. Elixir Transmutation)
 const ACTION_CONCEDE: String = "CONCEDE"               ## Abandonar la partida (desconexión definitiva)
+## Vencimiento de un plazo (v0.3, V3-13b). Solo la envía la sesión (en
+## LocalSession con by = "timeout"; en línea, solo el anfitrión). Nunca sale en
+## legal_actions; por eso NO está en ACTION_TYPES ni en OUT_OF_TURN_ACTIONS, sino
+## en SESSION_ACTION_TYPES. La resuelve TimeoutRules (V3-14), que valida `expect`
+## y devuelve ERR_TIMEOUT_STALE si la decisión que vencía ya no está abierta.
+## Ver make_action_timeout() y docs/TECNICO/v03-diseno.md §1.5.
+const ACTION_TIMEOUT: String = "TIMEOUT"
 
 const ACTION_TYPES: Array[String] = [
 	ACTION_PLAY_CARD, ACTION_DISCARD, ACTION_EXCHANGE, ACTION_DRINK_POTION, ACTION_END_TURN,
@@ -220,6 +227,23 @@ const OUT_OF_TURN_ACTIONS: Array[String] = [
 	ACTION_CHOOSE_TARGETS, ACTION_CHOOSE_CARDS, ACTION_DECLINE, ACTION_USE_ARTIFACT,
 	ACTION_USE_EVENT, ACTION_CONCEDE,
 ]
+
+## Acciones que no elige un jugador: las genera la sesión (o el anfitrión) y
+## nunca salen en Game.legal_actions. validate_action_shape las acepta.
+const SESSION_ACTION_TYPES: Array[String] = [ACTION_TIMEOUT]
+
+## TIMEOUT.scope: qué decisión ha vencido.
+const TIMEOUT_SCOPE_TURN: String = "turn"          ## el turno completo; expect = {"turn": int}
+const TIMEOUT_SCOPE_REACTION: String = "reaction"  ## una ronda de reacción; expect = {"spell_iid": int, "stack": int}
+const TIMEOUT_SCOPE_PROMPT: String = "prompt"      ## un prompt; basta prompt_id (expect = {})
+const TIMEOUT_SCOPES: Array[String] = [TIMEOUT_SCOPE_TURN, TIMEOUT_SCOPE_REACTION, TIMEOUT_SCOPE_PROMPT]
+
+## LOG_TIMEOUT.data.resolution: qué aplicó el motor al vencer (E11).
+const TIMEOUT_RES_PASS: String = "pass"            ## reaction: PASS_REACTION de ese jugador
+const TIMEOUT_RES_DECLINE: String = "decline"      ## prompt: DECLINE
+const TIMEOUT_RES_ZERO: String = "zero"            ## prompt mana_focus sin DECLINE: USE_EVENT {mana: 0}
+const TIMEOUT_RES_RANDOM: String = "random"        ## prompt obligatorio: elección al azar con el RNG del estado
+const TIMEOUT_RES_END_TURN: String = "end_turn"    ## turn: prompts propios resueltos + END_TURN
 
 # -----------------------------------------------------------------------------
 # Prompts: decisiones pendientes de un jugador concreto (state.pending)
@@ -269,6 +293,9 @@ const ERR_ARTIFACT_LIMIT: String = "artifact_limit"         ## p. ej. 2.º Spell
 const ERR_ARTIFACT_ALREADY_USED: String = "artifact_already_used"  ## Ya usado este turno
 const ERR_NOTHING_TO_DISCARD: String = "nothing_to_discard"
 const ERR_STALE_REV: String = "stale_rev"                   ## En línea: baseRev de la acción desactualizado
+## TIMEOUT cuya decisión ya no está abierta (el jugador actuó, cambió la ronda o
+## el turno). La sesión no lo muestra a la UI (by != "human").
+const ERR_TIMEOUT_STALE: String = "timeout_stale"
 
 # -----------------------------------------------------------------------------
 # Tubería de modificadores (ver sección "Modificadores" más abajo)
@@ -341,6 +368,11 @@ const LOG_RULE_BROKEN: String = "rule_broken"
 const LOG_ELIMINATED: String = "eliminated"
 const LOG_GAME_OVER: String = "game_over"
 const LOG_EFFECT: String = "effect"                    ## Genérico de un efecto: data.card_id + data.what
+## Se acabó el tiempo de `player` (v0.3). Público (visible_to = []). Va ANTES que
+## las entradas de lo que se aplica. data: {scope:String TIMEOUT_SCOPE_*,
+## resolution:String TIMEOUT_RES_*, prompt_kind:String ("" si no hay prompt),
+## prompt_id:int (-1 si no hay prompt)}.
+const LOG_TIMEOUT: String = "timeout"
 
 ## Motivos de eliminación (player.eliminated_reason).
 const ELIM_HP: String = "hp"
@@ -383,7 +415,13 @@ const HOOK_CAN_RESPOND: String = "can_respond"
 ##  pool_hp:int / pool_mana:int  cristales iniciales del pool (70 / 70)
 ##  exchange_base_cost:int    coste del 1.er intercambio; luego +1 por cada uno (1)
 ##  include_curse_of_rules:bool  Curse of Rules en el mazo (true; texto libre + botón)
-##  reaction_timeout_local_ms:int  0 = sin temporizador (botón "Pasar")
+##  turn_timeout_ms:int       plazo del turno completo de un humano local; 0 = sin límite (0).
+##                            Los 30000 los pone MatchPrefs (UI), no el motor.
+##  defense_timeout_ms:int    plazo por ventana de defensa o prompt fuera de mi
+##                            turno; 0 = sin límite (0). MatchPrefs pone 20000.
+##  reaction_timeout_local_ms:int  OBSOLETA (v0.2): solo vale como plazo de las
+##                            ventanas de reacción si defense_timeout_ms == 0.
+##                            0 = sin temporizador (botón "Pasar")
 ##  reaction_timeout_online_ms:int temporizador obligatorio en línea (15000)
 ##  mode:String               "local" | "online"
 ##  teams_enabled:bool        variante por equipos (false, v2)
@@ -405,6 +443,8 @@ static func default_config() -> Dictionary:
 		"pool_mana": 70,
 		"exchange_base_cost": 1,
 		"include_curse_of_rules": true,
+		"turn_timeout_ms": 0,
+		"defense_timeout_ms": 0,
 		"reaction_timeout_local_ms": 0,
 		"reaction_timeout_online_ms": 15000,
 		"mode": "local",
@@ -985,6 +1025,15 @@ static func make_action_concede(player: String) -> Dictionary:
 	return {"type": ACTION_CONCEDE, "player": player}
 
 
+## TIMEOUT (solo la sesión): scope:String TIMEOUT_SCOPE_*, prompt_id:int (-1 si
+## no es de prompt), expect:Dictionary con la decisión exacta que vence:
+##  turn -> {"turn": int}; reaction -> {"spell_iid": int, "stack": int}; prompt -> {}.
+static func make_action_timeout(pid: String, scope: String, prompt_id: int = -1,
+		expect: Dictionary = {}) -> Dictionary:
+	return {"type": ACTION_TIMEOUT, "player": pid, "scope": scope, "prompt_id": prompt_id,
+		"expect": expect.duplicate(true)}
+
+
 ## Claves obligatorias por tipo de acción y su tipo Variant.
 const ACTION_SPECS: Dictionary = {
 	ACTION_PLAY_CARD: {"card": TYPE_INT, "targets": TYPE_ARRAY, "payment": TYPE_ARRAY, "target_card": TYPE_INT, "extra": TYPE_DICTIONARY},
@@ -1001,6 +1050,7 @@ const ACTION_SPECS: Dictionary = {
 	ACTION_USE_ARTIFACT: {"card": TYPE_INT, "targets": TYPE_ARRAY, "cards": TYPE_ARRAY, "extra": TYPE_DICTIONARY, "prompt_id": TYPE_INT},
 	ACTION_USE_EVENT: {"extra": TYPE_DICTIONARY, "prompt_id": TYPE_INT},
 	ACTION_CONCEDE: {},
+	ACTION_TIMEOUT: {"scope": TYPE_STRING, "prompt_id": TYPE_INT, "expect": TYPE_DICTIONARY},
 }
 
 
@@ -1098,6 +1148,30 @@ static func alive_ids(state: Dictionary) -> Array[String]:
 		if not bool(pd["eliminated"]):
 			out.append(String(pd["id"]))
 	return out
+
+
+## Tamaños de zonas ocultas (regla de contrato A1, v0.3). Funcionan igual sobre
+## el estado completo y sobre una vista (`is_view`): en la vista usan
+## `deck_count` / `hand_count`; en el estado, `.size()`. Game.legal_actions, los
+## hooks HOOK_LEGAL_ACTIONS / HOOK_CAN_RESPOND y lo que llamen solo pueden leer
+## la parte pública, la mano propia de pid y reveals[pid]: para el tamaño del
+## mazo o de una mano ajena usan estos helpers, nunca s.deck ni la hand ajena.
+
+## Cartas que quedan en el mazo.
+static func deck_size(s: Dictionary) -> int:
+	if bool(s.get("is_view", false)) and s.has("deck_count"):
+		return int(s["deck_count"])
+	return (s.get("deck", []) as Array).size()
+
+
+## Cartas en la mano de pid (0 si pid no existe).
+static func hand_size(s: Dictionary, pid: String) -> int:
+	var p: Dictionary = get_player(s, pid)
+	if p.is_empty():
+		return 0
+	if bool(s.get("is_view", false)) and p.has("hand_count"):
+		return int(p["hand_count"])
+	return (p.get("hand", []) as Array).size()
 
 
 ## Vecinos vivos (izquierda/derecha en sentido horario) de pid. [] si está solo.

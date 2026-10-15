@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Cobertura de efectos: cada id jugable del catálogo debe tener efecto en registry.gd.
 ## Puede fallar mientras los agentes de efectos no hayan terminado.
 

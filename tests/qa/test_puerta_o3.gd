@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-32 (QA, puerta de la oleada 3). Casos escritos desde los criterios de V2-28, 29, 30, 42, 45 y 31,
 ## independientes de los tests de cada tarea (otros escenarios, semillas y configuraciones).
 ## Informe: docs/historico/v0.2/puerta-o3.md.
@@ -10,6 +10,7 @@ var _t: TableScreen
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	CardInfo.summaries_path = SUMMARIES
@@ -17,6 +18,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
+	await super.after_each()
 	CardInfo.summaries_path = SUMMARIES
 	CardInfo.reload_summaries()
 

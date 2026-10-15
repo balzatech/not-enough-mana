@@ -1,10 +1,11 @@
-extends GutTest
+extends NemTest
 ## V2-28: resúmenes en español de la ficha y el zoom.
 
 const OK_PATH: String = "res://data/card_summaries_es.json"
 
 
 func before_each() -> void:
+	super.before_each()
 	CardInfo.summaries_path = OK_PATH
 	CardInfo.reload_summaries()
 	FakeState.install_defs()

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## LogText / ActionLog (V2-16): el registro nunca muestra claves internas ni "efecto aplicado".
 
 const OH = preload("res://tests/engine/effects/offensive_helpers.gd")
@@ -7,6 +7,7 @@ var _names: Dictionary = {"p1": "Ana", "p2": "Bruno", "p3": "Cira", "p4": "Dario
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 
 

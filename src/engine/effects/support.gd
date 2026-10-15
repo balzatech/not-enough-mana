@@ -10,7 +10,7 @@ extends RefCounted
 ##    prompt (state.pending es público y las iids identifican la carta): el
 ##    prompt lleva data {from, count:1, cards:[], hidden:true}; la UI muestra
 ##    las cartas desde reveals y las acciones legales las añade
-##    HOOK_LEGAL_ACTIONS.
+##    HOOK_LEGAL_ACTIONS, también desde reveals[caster] (contrato A1).
 ##  * Potent Elixir: flags.potent_elixir += 1 (Damage.potion_amount duplica).
 ##  * Space Shift: descarta toda la mano y roba hasta el límite (los eventos
 ##    que salgan se activan, como en un robo normal).
@@ -116,6 +116,12 @@ static func prompt_magic_hand(state: Dictionary, ctx: Dictionary) -> Dictionary:
 
 
 ## HOOK_LEGAL_ACTIONS (como `source` del prompt): una CHOOSE_CARDS por carta.
+## Contrato A1: las cartas salen de lo que vio quien lanzó Magic Hand
+## (reveals[caster], kind "hand", of = data.from), no de la mano real de la
+## víctima, así que el resultado es el mismo sobre el estado y sobre la vista
+## del que elige. Se descartan las cartas que ya están en una zona pública
+## (p. ej. la víctima las descartó por otro prompt): ya no están en su mano.
+## La validación de CHOOSE_CARDS (prompt_magic_hand) sigue mirando la mano real.
 static func legal_magic_hand(state: Dictionary, ctx: Dictionary) -> Dictionary:
 	var card: Dictionary = ctx["card"]
 	var pr: Dictionary = (card.get("data", {}) as Dictionary).get("prompt", {})
@@ -124,14 +130,45 @@ static func legal_magic_hand(state: Dictionary, ctx: Dictionary) -> Dictionary:
 	var data: Dictionary = pr["data"]
 	if not bool(data.get("hidden", false)):
 		return state
-	var victim: Dictionary = Types.get_player(state, String(data.get("from", "")))
-	if victim.is_empty():
+	var from: String = data.get("from", "")
+	var victim: Dictionary = Types.get_player(state, from)
+	if victim.is_empty() or bool(victim["eliminated"]):
 		return state
+	var caster: String = ctx["caster"]
+	var gone: Array = public_iids(state)
 	var out: Array = ctx["actions"]
-	for c: Variant in victim["hand"]:
-		out.append(Types.make_action_choose_cards(String(ctx["caster"]), int(pr["id"]),
-			[int((c as Dictionary)["iid"])]))
+	for c: Variant in revealed_hand(state, caster, from):
+		var iid: int = int((c as Dictionary)["iid"])
+		if not gone.has(iid):
+			out.append(Types.make_action_choose_cards(caster, int(pr["id"]), [iid]))
 	return state
+
+
+## Última mano revelada (kind "hand") de `of` en reveals[viewer]. [] si no hay.
+## Solo lee reveals[viewer]: vale sobre el estado y sobre la vista de viewer.
+static func revealed_hand(state: Dictionary, viewer: String, of: String) -> Array:
+	var reveals: Array = (state.get("reveals", {}) as Dictionary).get(viewer, []) as Array
+	for i: int in range(reveals.size() - 1, -1, -1):
+		var r: Dictionary = reveals[i]
+		if String(r.get("kind", "")) == "hand" and String(r.get("of", "")) == of:
+			return r.get("cards", []) as Array
+	return []
+
+
+## iids de las cartas en zonas públicas: descarte, mesas y evento activo.
+static func public_iids(state: Dictionary) -> Array:
+	var out: Array = []
+	for c: Variant in state["discard"]:
+		out.append(int((c as Dictionary)["iid"]))
+	for p: Variant in state["players"]:
+		var pd: Dictionary = p
+		for zone: String in ["artifacts", "curses"]:
+			for c: Variant in pd[zone]:
+				out.append(int((c as Dictionary)["iid"]))
+	var ev: Dictionary = state["active_event"]
+	if not ev.is_empty():
+		out.append(int(ev["iid"]))
+	return out
 
 
 # =============================================================================

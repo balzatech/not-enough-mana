@@ -3,9 +3,10 @@ extends RefCounted
 ## Acciones legales de un jugador sobre una VISTA (Types.view_for o
 ## compose_view), indexadas para que la UI habilite solo lo legal.
 ##
-## Usa Game.legal_actions(view, pid). Como la vista oculta las manos ajenas,
-## las elecciones de Magic Hand (prompt con data.hidden) se completan con las
-## cartas reveladas en view.reveals[pid]. Funciona igual en local y en línea.
+## Usa Game.legal_actions(view, pid). Por el contrato A1 (CONTRATO-TIPOS.md)
+## las acciones legales no leen información oculta, así que sobre la vista dan
+## lo mismo que sobre el estado (Magic Hand sale de view.reveals[pid]).
+## Funciona igual en local y en línea.
 
 var view: Dictionary = {}
 var pid: String = ""
@@ -21,34 +22,12 @@ static func build(p_view: Dictionary, p_pid: String) -> ActionOptions:
 	if Types.get_player(p_view, p_pid).is_empty():
 		return o
 	o.actions = Game.legal_actions(p_view, p_pid)
-	o._add_hidden_choices()
 	return o
-
-
-## Magic Hand: una CHOOSE_CARDS por cada carta revelada de la mano observada.
-func _add_hidden_choices() -> void:
-	for pr: Variant in view.get("pending", []) as Array:
-		var prd: Dictionary = pr
-		if String(prd.get("player", "")) != pid or String(prd.get("kind", "")) != Types.PROMPT_CHOOSE_CARD:
-			continue
-		var data: Dictionary = prd.get("data", {}) as Dictionary
-		if not bool(data.get("hidden", false)):
-			continue
-		var pr_id: int = int(prd["id"])
-		if not prompt_actions(pr_id, Types.ACTION_CHOOSE_CARDS).is_empty():
-			continue
-		for c: Variant in revealed_hand(view, pid, String(data.get("from", ""))):
-			actions.append(Types.make_action_choose_cards(pid, pr_id, [int((c as Dictionary)["iid"])]))
 
 
 ## Última mano revelada (kind "hand") de `of` para `viewer`.
 static func revealed_hand(v: Dictionary, viewer: String, of: String) -> Array:
-	var reveals: Array = (v.get("reveals", {}) as Dictionary).get(viewer, []) as Array
-	for i: int in range(reveals.size() - 1, -1, -1):
-		var r: Dictionary = reveals[i]
-		if String(r.get("kind", "")) == "hand" and String(r.get("of", "")) == of:
-			return r.get("cards", []) as Array
-	return []
+	return SupportEffects.revealed_hand(v, viewer, of)
 
 
 func is_empty() -> bool:

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6c: los 11 eventos e interacciones (Wild Fire + Fire Storm, Tiara + Not
 ## Enough Mana, evento reemplazado).
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	s = X.new_state()
 
 

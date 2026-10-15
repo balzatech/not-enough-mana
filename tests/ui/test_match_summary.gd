@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-26b (T26-B): MatchSummary.build. Casos C8-1 a C8-6, C8-12, C8-13.
 
 const OH = preload("res://tests/engine/effects/offensive_helpers.gd")
@@ -8,6 +8,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	s = OH.make_state(4)

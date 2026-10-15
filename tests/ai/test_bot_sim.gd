@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T9: partidas bot contra bot. Comprueba que el bot nunca envía acciones
 ## ilegales, que siempre hay alguien que puede decidir (sin bloqueos) y que
 ## ningún turno se alarga sin fin (anti-bucle).

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-14a: numeración del log (log_seq) en Game._append_log.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")

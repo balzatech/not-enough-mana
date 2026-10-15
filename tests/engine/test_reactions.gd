@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6b: ventana de reacción (orden, pila LIFO, cierre automático, plazo,
 ## Annihilation, Mirror Shield, Last Wish, extensión de Lightning encadenado).
 ## Catálogo real; los ofensivos usan los efectos falsos de engine_helpers
@@ -8,6 +8,7 @@ const H = preload("res://tests/fixtures/engine_helpers.gd")
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	H.register_fake_effects()

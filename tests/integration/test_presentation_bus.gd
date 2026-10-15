@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-14b: FeedbackMapper, FeedbackQueue y PresentationBus (sin la mesa).
 
 const GAME_SEED: int = 33

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Tests de UI: las escenas se instancian sin errores y emiten las acciones esperadas.
 
 const SCENES: Array[String] = [
@@ -14,12 +14,14 @@ var _actions: Array[Dictionary] = []
 
 
 func before_each() -> void:
+	super.before_each()
 	_actions = []
 	FakeState.install_defs()
 	UiUtil.prefer_extra = true
 
 
 func after_each() -> void:
+	await super.after_each()
 	UiUtil.prefer_extra = false
 
 

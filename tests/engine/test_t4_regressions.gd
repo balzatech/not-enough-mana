@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Regresiones de la estabilización tras la oleada 2 (T4).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -7,6 +7,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 	H.register_fake_effects()

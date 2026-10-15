@@ -41,6 +41,21 @@ El plan de trabajo vivo está en `docs/BACKLOG.md` (lo ordena el Producer en `do
 
 ---
 
+## Tareas manuales de la v0.3 (2026-10-14)
+
+Plan en `docs/TAREAS.md`. Estado a 2026-10-14: la oleada 0 de diseño está entregada (falta el plan de QA, en curso, y la puerta del Director V3-06). **Siguen abiertas E10 (M-v0.3-3) y E15 (M-v0.3-2)**; los packs ya están aprobados y descargados. Lo tuyo en esta versión:
+
+| Tarea | Cuándo | Qué | Por qué |
+|---|---|---|---|
+| ~~M-v0.3-1 Aprobar packs de arte~~ (E13) | **HECHO (2026-10-14)** | Aprobaste los packs recomendados y Art los descargó (V3-22 hecha): Kenney Fantasy UI Borders (CC0), Kenney Game Icons (CC0), game-icons.net (CC BY 3.0) y Cinzel (SIL OFL), 0,47 MB en `assets/ui_v03/`. Nada más que hacer; la atribución irá en la pantalla de Créditos | — |
+| **M-v0.3-2 Confirmar el azar en decisiones obligatorias al vencer** (E15) | **Abierta.** Antes de la tarea V3-14 (temporizadores); no bloquea el inicio, hay valor por defecto | Responder si, al vencer el tiempo con una decisión obligatoria pendiente, el juego elige **al azar** (con el RNG de la partida): descarte forzado de cartas, y también elegir objetivos y elegir carta. Lo demás sigue siendo "no se elige nada" (perder turno, no defender, rechazar lo opcional) | Es el caso en que el motor exige elegir algo aunque "no se elige nada" (E11). Si dices que no, solo cambia un punto del código (`timeout_rules.gd`) |
+| **M-v0.3-3 Sección 8 de tus requisitos** (E10) | **Abierta.** Cuando puedas, idealmente antes de V3-06 | Pegar el texto que falta tras "Evitar interfaces confusas:" (sección 8), o decir que acaba ahí | Tu documento llega cortado; el plan se hizo con lo recibido y lo que falte se añade a LINEAMIENTOS |
+| **M-v0.3-4 Aprobar la especificación de Conjunción astral** | Tras V3-19 (lote 1E) | Leer `docs/diseno/conjuncion-astral.md` y aprobar o corregir | Cambia reglas, solo tú decides; sin tu aprobación V3-40 no se hace y pasa a v0.3.1 |
+| **M-v0.3-5 Resolver E16** (opcional) | Antes de V3-06 | Confirmar que manda tu decisión E11 sobre el texto de LINEAMIENTOS §5 | Contradicción entre documentos; el Producer asumió tu decisión |
+| **M12-bis Prueba humana final** (V3-44) | Tras V3-43 (aprobación previa del Director) | Jugar 2 partidas (3 y 5 bots) con la ventana a 720x1280 y, si puedes, otra a 1080x2400, y contestar el guion `docs/qa/guion-m12bis.md` (¿encontraste cada control?, ¿supiste a quién atacabas y quién te atacaba?, ¿30 s/20 s se sienten bien?, ¿animaciones ayudan?, ¿se ve como juego de magos?, ¿volverías a jugar?) | La ergonomía y la diversión solo las valida una persona; con ratón no se prueba el pulgar (se confirma en v0.4) |
+
+---
+
 ## A. Preparación (ya hecha en gran parte)
 
 ### M1. Recargar los agentes

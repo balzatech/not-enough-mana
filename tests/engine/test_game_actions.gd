@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T4: acciones del turno (1.2.2-1.2.3), pociones (1), reglas especiales (1.3),
 ## eliminación y victoria, validación del reducer.
 
@@ -10,6 +10,7 @@ var nxt: String
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 	H.register_fake_effects()

@@ -1,10 +1,11 @@
-extends GutTest
+extends NemTest
 ## T4: preparación (REQ 1, 1.1), mazo y robo (1.2.1).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 

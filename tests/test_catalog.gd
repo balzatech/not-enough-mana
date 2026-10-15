@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Auditoría del catálogo real (data/cards.json). T7.
 ## 61 diseños (58 jugables + quick_reference, blank y anti_joker), 165 cartas, 154 jugables.
 

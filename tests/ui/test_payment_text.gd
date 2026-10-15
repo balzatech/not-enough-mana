@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-24 (criterios-v02 item 4): texto del paso de pago y preseleccion.
 ## Casos C4-1..C4-11 con el catalogo real y la pantalla de mesa.
 
@@ -7,6 +7,7 @@ var _iid: int = 0
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	UiUtil.extra_defs = {}
 	_actions = []

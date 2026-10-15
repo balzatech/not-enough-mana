@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-26c: pantalla de fin (GameOverSummary + TableGameOver) y "Jugar otra vez".
 ## Casos C8-9, C8-10, C8-11 de docs/diseno/criterios-v02.md.
 
@@ -7,6 +7,7 @@ var _prev_setup: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	FakeState.install_defs()
 	_prev_handler = UiNav.replay_handler
 	_prev_setup = UiNav.last_setup
@@ -14,6 +15,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
+	await super.after_each()
 	UiNav.replay_handler = _prev_handler
 	UiNav.last_setup = _prev_setup
 

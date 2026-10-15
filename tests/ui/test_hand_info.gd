@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-23: cartas jugables + ficha de la carta seleccionada (criterios-v02 ítem 3, C3-01..C3-14).
 ## Estados con el motor y el catálogo reales; "jugable" sale de las acciones legales.
 
@@ -10,6 +10,7 @@ var _tmp: String = "user://test_hand_info.cfg"
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	CardInfo.settings_path = _tmp

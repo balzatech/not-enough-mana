@@ -363,12 +363,16 @@ static func use_twardowskys_mirror(state: Dictionary, ctx: Dictionary) -> Dictio
 	return state
 
 
+## HOOK_LEGAL_ACTIONS: se ofrece si quedan cartas en el mazo o en el descarte
+## (al usarlo con el mazo vacío se baraja el descarte).
 static func legal_twardowskys_mirror(state: Dictionary, ctx: Dictionary) -> Dictionary:
 	var card: Dictionary = ctx["card"]
 	var pid: String = ctx["caster"]
 	if int(card["iid"]) < 0 or not _usable_now(state, pid, card):
 		return state
-	if (state["deck"] as Array).is_empty() and (state["discard"] as Array).is_empty():
+	# Contrato A1: solo datos públicos (tamaño del mazo, descarte). Funciona
+	# igual sobre el estado y sobre una vista (deck vacío, deck_count real).
+	if Types.deck_size(state) == 0 and (state["discard"] as Array).is_empty():
 		return state
 	(ctx["actions"] as Array).append(Types.make_action_use_artifact(pid, int(card["iid"])))
 	return state

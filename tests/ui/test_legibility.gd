@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-33: legibilidad móvil (docs/TAREAS.md §2.1, docs/diseno/escenarios/mesa-5-6-jugadores.md §7).
 ## Mesas reales (motor + LocalSession) dentro de un SubViewport de 1080x1920 o 720x1280
 ## con la misma escala que el juego (stretch canvas_items desde 1080x1920). Las medidas
@@ -16,6 +16,7 @@ var _vp: SubViewport = null
 
 
 func after_each() -> void:
+	await super.after_each()
 	if _vp != null and is_instance_valid(_vp):
 		_vp.queue_free()
 	_vp = null

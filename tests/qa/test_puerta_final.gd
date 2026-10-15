@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-35 (QA, puerta final de v0.2). Casos escritos por QA desde los criterios de §2.1 de docs/TAREAS.md
 ## (V2-33), P1 (fuente de respaldo) y P2 (un solo reduce por accion de bot), con otro metodo que los tests
 ## de cada tarea: recorrido generico del arbol de nodos (no se usan los miembros del modulo salvo para
@@ -15,11 +15,13 @@ var _vp: SubViewport = null
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 
 
 func after_each() -> void:
+	await super.after_each()
 	_drop()
 	await wait_process_frames(1)
 

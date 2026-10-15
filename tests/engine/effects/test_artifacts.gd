@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6c: artefactos.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -8,6 +8,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	s = X.new_state()
 
 

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6a: efectos de fuego (Fire Arrow, Fireball, Meteor Shower, Armageddon,
 ## Mana Implosion) con el catálogo real.
 
@@ -13,6 +13,7 @@ func before_all() -> void:
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	s = OH.make_state(4)

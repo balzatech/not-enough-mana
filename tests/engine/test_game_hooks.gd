@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T4: puntos de extensión del reducer para T6a/b/c (hooks del registro).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -7,6 +7,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 	s = H.game(3, {}, 11, [50, 40, 30])

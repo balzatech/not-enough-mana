@@ -1,8 +1,9 @@
-extends GutTest
+extends NemTest
 ## Tubería de modificadores (contrato T1).
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 
 

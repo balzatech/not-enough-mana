@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-01 (QA): confirmación reproducible de dos fallos del MVP.
 ##   P2: registro (LogText) con claves/datos que no coinciden con lo que escribe el motor.
 ##   P7: el bot se elimina solo por Too Much Mana al no saber contestar al prompt oculto de Magic Hand.
@@ -26,6 +26,7 @@ var _names: Dictionary = {"p1": "Ana", "p2": "Bruno", "p3": "Cira", "p4": "Dani"
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	CardCatalog.load_json()
 

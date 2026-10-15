@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Una accion de bot llama a Game.reduce una sola vez (el reduce de validacion se
 ## reutiliza en _apply) y el resultado es identico al flujo antiguo (dos reduce).
 

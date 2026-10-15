@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-25b: auto-pase de reacción en LocalSession (R1, R11, R12, R14, plazo).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")

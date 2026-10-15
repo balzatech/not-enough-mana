@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-36: cierre de los defectos menores de la puerta final de v0.2 (QA-V2-35-01 a 05).
 ## Un caso por defecto, con 3 y 6 jugadores y a 1080x1920 y 720x1280.
 
@@ -12,11 +12,13 @@ var _vp: SubViewport = null
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 
 
 func after_each() -> void:
+	await super.after_each()
 	_drop()
 	if FileAccess.file_exists(TMP_CFG):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(TMP_CFG))

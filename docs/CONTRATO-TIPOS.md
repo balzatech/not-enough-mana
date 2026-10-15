@@ -2,6 +2,17 @@
 
 La fuente de verdad es `src/engine/types.gd` (comentada clave por clave). Esto es el resumen para empezar. No edites `types.gd`: pide cambios en `docs/CAMBIOS-TIPOS.md`.
 
+## Regla de contrato A1: acciones legales sobre la vista (v0.3)
+
+> `Game.legal_actions(s, pid)`, los hooks `HOOK_LEGAL_ACTIONS` y `HOOK_CAN_RESPOND`, y todo lo que llamen, **solo** pueden leer:
+> - la parte pública del estado;
+> - la mano propia de `pid`;
+> - `reveals[pid]`.
+>
+> Para tamaños de zonas ocultas se usan `Types.deck_size(s)` y `Types.hand_size(s, other)`, que devuelven `deck_count` / `hand_count` en una vista (`is_view: true`) y `.size()` en el estado. **No** se leen `s.deck`, `rng_state` ni la `hand` de otro jugador.
+
+Consecuencia: `Game.legal_actions(state, pid)` y `Game.legal_actions(Types.view_for(state, pid), pid)` dan el mismo conjunto. Lo comprueba `tests/engine/test_legal_view_equivalence.gd` (V3-11, que también arregla Twardowsky's Mirror y Magic Hand). Los efectos que se **aplican** (`reduce`) corren en la autoridad y sí leen el estado completo. Detalle: `docs/TECNICO/v03-diseno.md` §3.
+
 ## Archivos del contrato
 
 | Archivo | Clase | Qué es |
@@ -38,6 +49,30 @@ Claves de primer nivel: `schema_version, rev, status, config, players, deck, dis
 ### `state_changed(rev, events)` tras V2-14a
 
 `events` = **entradas de log nuevas** (`log_seq` mayor que la última emitida por esa sesión), **ordenadas por `log_seq`**, **filtradas por `visible_to` para los jugadores locales** (públicas, o con algún pid local en `visible_to`). Cada entrada se emite una sola vez por sesión; la sesión avanza su marca también con las entradas filtradas. `start()` emite `[]` y toma como base `last_log_seq` del log inicial. `LocalSession` lee de `state.log` completo (`_new_log_entries`); el cliente en línea lo hará de `view.log` compuesto y normalizado. Nunca se presentan los `events` de `reduce`. Detalle: `docs/TECNICO/bus-presentacion.md` §2-§3.
+
+## Plazos y acción `TIMEOUT` (v0.3, V3-13b)
+
+Aditivo: `SCHEMA_VERSION` no cambia. Diseño completo en `docs/TECNICO/v03-diseno.md` §1.
+
+**Config** (`default_config`, la rellena `normalize_state` y la exige `validate_state`):
+
+| Clave | Defecto | Significado |
+|---|---|---|
+| `turn_timeout_ms` | 0 | plazo del turno completo de un humano local; 0 = sin límite |
+| `defense_timeout_ms` | 0 | plazo por ventana de defensa o prompt fuera de mi turno; 0 = sin límite |
+| `reaction_timeout_local_ms` | 0 | **obsoleta** (v0.2): solo vale como plazo de las ventanas de reacción si `defense_timeout_ms == 0` |
+
+El motor, el simulador y los tests siguen sin reloj (0). Los 30000/20000 los pone `MatchPrefs` (UI, V3-16). El plazo **no** se guarda en el estado: lo lleva la sesión (`MatchClock`).
+
+**Acción** `ACTION_TIMEOUT = "TIMEOUT"`: `Types.make_action_timeout(pid, scope, prompt_id = -1, expect = {})` → `{"type":"TIMEOUT","player":pid,"scope":String,"prompt_id":int,"expect":Dictionary}`.
+- `scope` = `TIMEOUT_SCOPE_TURN` (`expect = {"turn": int}`), `TIMEOUT_SCOPE_REACTION` (`expect = {"spell_iid": int, "stack": int}`) o `TIMEOUT_SCOPE_PROMPT` (basta `prompt_id`; `expect = {}`).
+- Solo la envía la sesión (en línea, solo el anfitrión). **Nunca** sale en `legal_actions`: no está en `ACTION_TYPES` ni en `OUT_OF_TURN_ACTIONS`, sino en `SESSION_ACTION_TYPES`. Sí está en `ACTION_SPECS` (`validate_action_shape` la acepta).
+- La resuelve `TimeoutRules` (V3-14) con una línea de despacho en `Game.reduce`; hasta entonces `reduce` devuelve `ERR_INVALID_ACTION`.
+- `ERR_TIMEOUT_STALE = "timeout_stale"`: la decisión que vencía ya no está abierta (`expect` no coincide, el jugador ya actuó). El estado no cambia y la sesión no lo muestra.
+- `LOG_TIMEOUT = "timeout"`: público (`visible_to = []`), va **antes** que las entradas de lo que se aplica. `data: {scope, resolution, prompt_kind, prompt_id}` con `resolution` = `TIMEOUT_RES_PASS` / `DECLINE` / `ZERO` / `RANDOM` / `END_TURN` (`"pass"`, `"decline"`, `"zero"`, `"random"`, `"end_turn"`); `prompt_kind = ""` y `prompt_id = -1` si no hay prompt.
+- Ojo en JSON/Firebase: un `expect` vacío desaparece igual que `extra: {}` en otras acciones; quien reciba acciones por red debe rellenarlo antes de `validate_action_shape` (v0.5).
+
+**Helpers A1:** `Types.deck_size(s) -> int` y `Types.hand_size(s, pid) -> int` (0 si `pid` no existe). En una vista usan `deck_count` / `hand_count`; en el estado, `.size()`. Tests: `tests/engine/test_types_v03.gd`.
 
 ## Campos del resumen de fin (por jugador, V2-06)
 

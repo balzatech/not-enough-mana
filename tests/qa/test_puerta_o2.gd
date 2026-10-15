@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-27 (puerta de la oleada 2): comprobaciones independientes de QA sobre los
 ## criterios de "hecho" de V2-22 a V2-26c, V2-39 y V2-40. No sustituyen a los tests
 ## de cada tarea: se escriben desde los criterios, con escenarios propios.
@@ -13,6 +13,7 @@ var _prev_handler: Callable
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	UiUtil.extra_defs = {}
@@ -22,6 +23,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
+	await super.after_each()
 	UiNav.replay_handler = _prev_handler
 	await wait_process_frames(2)
 

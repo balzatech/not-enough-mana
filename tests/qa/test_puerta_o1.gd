@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-21 (QA, puerta de la oleada 1): pruebas independientes de los ítems 2, 6 y 9 de LINEAMIENTOS.
 ## No dependen de los tests de los desarrolladores: usan el motor real, el Bot real y las escenas reales.
 
@@ -8,6 +8,7 @@ var _names: Dictionary = {"p1": "Ana", "p2": "Bruno", "p3": "Cira", "p4": "Dario
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	CardCatalog.load_json()
 

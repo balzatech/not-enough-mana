@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T4: tubería de daño, maná, curación y pool (damage.gd).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -7,6 +7,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 	s = H.game(3, {}, 9, [50, 40, 30])

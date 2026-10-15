@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6a: efectos de hielo (Ice Bolt, Blizzard, Ice Boomerang, Vampiric Touch,
 ## Freeze, Icy Grasp) con el catálogo real.
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	s = OH.make_state(4)

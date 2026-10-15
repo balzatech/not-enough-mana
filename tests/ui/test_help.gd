@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-30: pantalla "Cómo se juega", accesos desde el menú y la mesa, aviso de evento.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -7,6 +7,7 @@ const ORDER: Array[String] = ["Objetivo", "Tu turno", "Pagar cartas y maná", "P
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 

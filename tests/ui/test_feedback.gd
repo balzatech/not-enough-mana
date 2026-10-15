@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-22: feedback en la mesa (TableFeedback + FeedbackLayer + refresco incremental).
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -16,6 +16,7 @@ func before_all() -> void:
 
 
 func after_each() -> void:
+	await super.after_each()
 	await wait_process_frames(2)
 
 

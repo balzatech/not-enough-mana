@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6c: partidas con el registro real en las que se fuerzan artefactos, eventos
 ## y prompts de T6c. Toda acción legal de los hooks de T6c debe aplicarse sin
 ## error y el estado debe seguir siendo válido.

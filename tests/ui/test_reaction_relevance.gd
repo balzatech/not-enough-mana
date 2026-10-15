@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## ReactionRelevance (V2-25a): "me afecta" y auto-pase. Casos R2-R10, R13, R17 del
 ## documento del Game Designer, con estados armados a mano (asientos p1..p4 = A..D;
 ## C = p3 es el humano local).
@@ -7,6 +7,7 @@ var _iid: int = 100
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	_iid = 100
 

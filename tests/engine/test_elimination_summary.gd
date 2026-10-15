@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-26a (T26-A): el motor rellena los campos del resumen de fin por jugador
 ## (turns_played, eliminated_order/turn/by/card/cause). Casos C8-1, C8-2, C8-4 a C8-8.
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	s = OH.make_state(4)

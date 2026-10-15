@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6c: cartas de soporte (Heal, Greater Heal, Book Exchange, Magic Hand,
 ## Potent Elixir, Space Shift).
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	s = X.new_state()
 
 

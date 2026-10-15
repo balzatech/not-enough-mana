@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T8: mesa (TableScreen) + LocalSession con el motor real. Acciones simuladas
 ## pulsando la UI: jugar una ofensiva, responder con una defensiva, beber
 ## poción fuera de turno, temporizador de reacción, avisos, Magic Hand y una
@@ -17,12 +17,14 @@ func before_all() -> void:
 
 
 func before_each() -> void:
+	super.before_each()
 	UiUtil.prefer_extra = false
 	_errors.clear()
 
 
 ## Deja que se liberen los nodos de la UI encolados con queue_free.
 func after_each() -> void:
+	await super.after_each()
 	await wait_process_frames(2)
 
 

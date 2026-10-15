@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T8: LocalSession (sin escenas). Creación desde LocalSetup, vistas, bots con
 ## temporizador cancelable, cola sin recursión, poción fuera de turno y
 ## temporizador de reacción.

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T4: simulación de partidas con acciones legales aleatorias, invariantes del
 ## estado y JSON ida y vuelta.
 ##
@@ -26,6 +26,7 @@ const WEIGHTS: Dictionary = {
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 	H.use_fixture_catalog()
 	H.register_fake_effects()

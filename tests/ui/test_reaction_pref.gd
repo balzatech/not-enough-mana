@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-25c: preferencia "Avisarme de reacciones" (R15) y cableado en UiNav.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -11,6 +11,7 @@ func before_all() -> void:
 
 
 func before_each() -> void:
+	super.before_each()
 	DirAccess.remove_absolute(TMP)
 
 

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6c: maldiciones (Rules, Elder, Younger, Vigour, Even, Odd) y Runic Armor.
 ## Jugadores: p1 40 años (enero), p2 30 (febrero), p3 20 (marzo).
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	s = X.new_state()
 	for pid: String in ["p1", "p2", "p3"]:
 		H.set_mana(s, pid, 5)

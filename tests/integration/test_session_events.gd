@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-14a: LocalSession emite en state_changed las entradas de log nuevas
 ## (por log_seq), respetando visible_to.
 

@@ -1,52 +1,63 @@
 # Backlog (post-MVP local)
 
-Estado a 2026-10-13: el MVP local está hecho (RF1-RF11 salvo multijugador): 58 cartas con efecto, ventana de reacción, bots (98,5 % de partidas terminadas), UI de mesa, hot-seat. 425/425 tests, 0 warnings. **Sin commits todavía** (el usuario pidió commitear cuando el MVP local funcione y lo confirme).
+Estado a 2026-10-14: MVP local y **v0.2 "Mesa legible" cerradas** (commit `104a7c9` y revisión de código posterior, 717 tests, 0 warnings). El usuario jugó la v0.2 y escribió los requisitos de la siguiente (`docs/revision/requisitos-v03-usuario.md`). Lineamientos del Director: `docs/revision/LINEAMIENTOS-v03.md`.
 
-Este backlog lo mantiene el **Producer**. Cada ítem indica responsable sugerido y criterio de aceptación (lo refina el Game Designer / Lead Programmer).
+Este backlog lo mantiene el **Producer** (reordenado por el Director el 2026-10-14 al fijar la v0.3). Cada ítem indica responsable sugerido y criterio de aceptación (lo refina el Game Designer / Lead Programmer).
 
-## Orden de iteraciones (decidido el 2026-10-13, ver `docs/DECISIONES.md`)
-1. **v0.2 "Mesa legible"** (ahora). Plan detallado en `docs/TAREAS.md`.
-2. **B1 Multijugador en línea** (después de v0.2; bloqueado además por M3-M5).
-3. **v0.3** (abajo). B2 y B3 pueden ir en paralelo con B1 cuando haya hueco.
+## Orden de iteraciones (decidido el 2026-10-14, ver `docs/DECISIONES.md`)
+1. **v0.3 "Versión local completa contra bots"** (ahora).
+2. **v0.4 "En el celular"**: Web en red local (E9), memoria y prueba táctil.
+3. **v0.5 Multijugador en línea (B1)**, cuando Firebase esté configurado (M3-M5).
+B2 (QA a fondo) puede ir en paralelo cuando haya hueco; B3 se reparte entre v0.4 (Web local) y v0.5.
 
 ## Pendientes de decisión del usuario
-- Probar el MVP local (M12) y confirmar para el primer commit. Para v0.2, M12 se hace al final con el guion de QA (`docs/qa/guion-m12.md`, tarea V2-31).
-- `docs/DECISIONES-PARA-REVISAR.md` (14 decisiones de reglas; sobre todo Elixir Transmutation). La ventana de reacción en local se queda como está (E5, resuelto); para el modo en línea se decide al diseñar B1.
-- E2 Partida rápida: aplazada hasta medir la duración real (M12).
+- E10-E14 de `docs/ESCALADOS.md` (sección 8 cortada, elección al vencer el tiempo en decisiones obligatorias, semántica de los 30 s, aprobación de packs, Conjunción astral).
+- `docs/DECISIONES-PARA-REVISAR.md` (14 decisiones de reglas; sobre todo Elixir Transmutation). La ventana de reacción en línea se decide al diseñar B1.
+- E2 Partida rápida: aplazada hasta medir la duración real.
 
-## v0.2 "Mesa legible"  *(prioridad actual)*
-Los 12 ítems de `docs/revision/LINEAMIENTOS.md` §4 (feedback de paneles, registro de 3 líneas, cartas jugables y ficha, pago explícito, cartas legibles, interfaz honesta, preferencia de reacción, pantalla de fin con resumen, bots sin suicidio, contexto y riesgo, "Cómo se juega", legibilidad móvil) más: la **ficha en español** de cada carta (datos mecánicos generados + resumen de una línea de Narrative, solo dentro de la app; decisión E1), el bus de eventos de presentación y la división de `table.gd`. Oleadas, responsables, archivos y criterios: `docs/TAREAS.md`. Estado tras la oleada 1 (2026-10-13): oleada 1 cerrada, puerta V2-21 validada por QA y **aprobada con cambios por el Director** (465/465 tests, 200/200 partidas de bots, 0 eliminaciones por Too Much Mana, línea base corregida en `docs/qa/metricas-base.md`). Tareas nuevas en la oleada 2-3: V2-14d, V2-39, V2-40, V2-41, V2-42, V2-43 (condicional), V2-44 (opcional), V2-45 (icono Eliminado). Tope de 2 agentes simultáneos. Tamaño táctil: 144 px a 1080 en botones de acción principal, 96 px en el resto.
+## v0.3 "Versión local completa contra bots"  *(prioridad actual)*
+Objetivo: 1 persona contra 2-5 bots en el PC, divertida, clara y con aspecto de juego de magos. Detalle, flujos y "hecho cuando" en `docs/revision/LINEAMIENTOS-v03.md` §7; aceptación en §8 (puerta de QA + prueba humana M12-bis). Tope de 2 agentes simultáneos.
 
-## v0.3  *(después de v0.2, y en paralelo o tras B1 según decida el Director)*
-Cada ítem lo refina el Game Designer / Lead Programmer cuando se abra la iteración.
+Estado (2026-10-14): plan de ejecución creado en `docs/TAREAS.md` (tareas V3-01..V3-44). Ninguna tarea iniciada; las prioridades 1-15 de abajo siguen todas en **pendiente**. Prioridad 11 (packs): propuesta = V3-03, descarga = V3-22 (bloqueada por aprobación del usuario).
 
-**Orden de v0.3 fijado por el Director (2026-10-13, V2-36; propuesta "En el celular", B1 pasaría a v0.4: pendiente de E8 y E9 del usuario).** Detalle, motivos y "hecho cuando" en `docs/revision/evaluacion-v02.md` §4:
-1. v0.2.1: arreglos que pida M12 (solo si hay "no" o "a veces").
-2. E6 aplicada según decida el usuario tras M12 (límite y/o variante anti-bloqueo).
-3. Build Android de depuración (Web solo en la red local si el usuario la elige; nunca hosting público).
-4. Memoria de texturas (~290 MB) y rendimiento medidos y reducidos en el dispositivo.
-5. Prueba M12-bis en el celular (táctil y legibilidad).
-6. Mano legible con la ficha abierta en 5-6 jugadores (QA-V2-35-06).
-7. Conjunción astral (opción desactivada por defecto).
-8. Audio mínimo y vibración en Android.
-9. Bots que usan las 15 cartas que nunca se juegan (sin cambiar reglas).
-10. Meta de 16 ms (decisión del bot fuera del fotograma, P2b; P3/P4).
-Después de v0.3: animaciones de cartas y efectos por elemento, tutorial guiado (solo si M12 lo pide), estilos y velocidad de bots, variante por equipos, partida rápida (E2, según los minutos de M12). La lista de abajo se conserva como detalle de cada ítem.
-- **Conjunción astral** como opción **desactivada por defecto** (E4, resuelto): los eliminados beben y quitan 1 de maná a los vivos. Game Designer (especificación y criterios), Developer, QA. Es un cambio de reglas opcional: el usuario aprueba la especificación final.
-- **Audio** (efectos sintetizados o propios, desactivados por defecto; los ajustes de volumen reaparecen) y vibración en Android. Audio, Developer.
-- **Animaciones de cartas** (robar, jugar, descartar) y opción "Reducir animaciones". Developer, Technical Artist.
-- **Efectos por elemento** (fuego, hielo, rayo; `CPUParticles2D`, compatibles con Web). Technical Artist.
-- **Tutorial guiado** con mazo preparado. Level Designer, Narrative.
-- **Velocidad de bots** configurable (Normal / Rápido) y estilos de bot. AI Programmer, Developer.
-- **Ficha en español**: solo si no se completa en v0.2 (los resúmenes V2-11 a V2-12 y V2-28 son las tareas que podrían moverse).
-- Variante por equipos (si el usuario la quiere).
-- **Seguimiento del Game Designer (de `docs/qa/metricas-base.md`, V2-02):** 14 de 47 cartas no-evento no se juegan nunca en 200 partidas de bots (magic_capture, annihilation, space_shift, curse_of_rules, fireproof_tiara, padded_boots, faradays_cloak, wild_fire, dragon_glass, tesla_coil, spellbook, scroll_of_elements, transformation_glove, twardowskys_mirror). Revisar con la línea base corregida (V2-38) cuántas siguen sin jugarse, y si es la heurística del bot (que no usa artefactos ni utilidades) o la carta. **Sin cambiar reglas**; cualquier cambio con efecto en la partida lo decide el usuario.
-- **Memoria de texturas (~280 MB, `docs/historico/v0.2/v02-base.md` §2):** no afecta al escritorio; revisar antes de M13/M14 (builds Android y Web, aún inexistentes). Lead Programmer + Technical Artist.
-- **Bloqueo por límite de pociones (E6):** si tras V2-42 sigue habiendo > 2 % de partidas > 100 turnos o un humano puede atascarse, implementar la opción que elija el usuario según V2-43 (cambio de regla: solo con su aprobación).
-- **Si no caben en v0.2:** V2-44 (registro redundante en la reacción) y la optimización del fotograma con acción hasta <= 16 ms (V2-34 informa).
-- Mejorar la medición: la duración en minutos no sale de la simulación (solo turnos y pasos); se mide en M12.
+**A. Cimientos**
+1. A4 herramientas de test (`mkdir -p .godot`, `override.cfg`, `flock -w`). Developer / QA.
+2. A1 acciones legales sobre la vista (contrato del Lead Programmer + test de equivalencia estado/vista). Requisito del resaltado de objetivos.
+3. M4 aislamiento de tests y 0 nodos huérfanos (`tools/test.sh` falla si hay). Developer / QA.
+4. Temporizadores en la sesión: turno 30 s y defensa 20 s configurables, pausa al esperar a bots, reloj monótono (M3), bots sin plazo, M5 al tocar `LocalSession`. Lead Programmer + Developer.
+5. Presentación secuenciada (los bots esperan a la animación anterior) y opción "Reducir animaciones". Lead Programmer + Developer.
 
-## B1. Multijugador en línea (Firebase)  *(después de v0.2)*
+**B. Mecánica y UX**
+6. Partida contra bots: hot-seat oculto (1 humano + 2-5 bots; código conservado), límite de pociones desactivado por defecto y activable, temporizadores configurables en la pantalla de nueva partida. Developer.
+7. Mesa por zonas de pulgar y por fase (un solo principal, lo que no aplica se oculta, selector de objetivos en el dock, ficha en el centro, mano ≥ 150 px). Level Designer + Developer.
+8. Flujo de ataque (elegir carta, objetivos válidos, vista previa, lanzar, resultado). Game Designer + Developer.
+9. Flujo de defensa (aviso, atacante, opciones explicadas, temporizador, resultado). Game Designer + Developer.
+10. Temporizadores en pantalla (oro turno / plata defensa) y transiciones de turno. Developer + Technical Artist.
+
+**C. Visual**
+11. Propuesta de 2-3 packs por necesidad (UI fantasía, iconos de runas y hechizos, fuentes) con licencia, **sin descargar** hasta que el usuario elija (E13). Art.
+12. Tema nuevo (paleta, fuentes con DejaVu de respaldo, paneles, marcos, botones de 5 estados, sigilos de mago, fondo propio de mesa) + A3 (caché de texturas) con presupuesto de memoria. Technical Artist + Art.
+13. Efectos y animaciones (proyectiles por elemento, escudos, impactos, círculos rúnicos, colocación de cartas). Technical Artist + Developer; Performance mide.
+14. Pantallas fuera de la mesa con la identidad nueva (menú, nueva partida, Ajustes, Cómo se juega con panel, fin, créditos si hay atribución). Developer + Art.
+15. Conjunción astral (E4), opción desactivada; la última, puede pasar a v0.3.1 (E14). Game Designer + Developer.
+
+**Si M12-bis lo pide (v0.3.1):** arreglos de claridad o ergonomía; bots que usan las 15 cartas que nunca juegan, si los bots aburren.
+
+## v0.4 "En el celular"  *(después de v0.3)*
+1. Build Web servida solo en la red local (E9); nunca hosting público (M16).
+2. Memoria de texturas: compresión por plataforma (resto de A3, P7 de `docs/rendimiento/v02-final.md`); carga < 10 s.
+3. Rendimiento en el celular: fotograma con acción p95 ≤ 33 ms con 6 jugadores; si falla, P2b (bot fuera del fotograma, requiere A2) y P3/P4.
+4. Prueba táctil real (M12-bis en el celular): ergonomía del pulgar, toques accidentales, legibilidad.
+5. Audio mínimo (sin copyright, desactivado por defecto) y vibración; los ajustes reaparecen solo cuando funcionen.
+6. Android (APK de depuración) cuando el usuario lo pida (M3, M14).
+
+## Después de v0.4 (sin orden fijo)
+- Bots: usar todas las cartas, estilos y velocidad configurable (sin cambiar reglas).
+- Tutorial guiado (solo si las pruebas humanas lo piden), partida rápida (E2), variante por equipos, guardar partida.
+- Hot-seat de nuevo (requisito: el plazo arranca tras "Soy X", M3).
+- Seguimiento del Game Designer: cartas que los bots no juegan nunca (14-15; artefactos y utilidades). **Sin cambiar reglas**.
+
+## B1. Multijugador en línea (Firebase)  *(v0.5)*
 Bloqueado por tareas manuales M3-M5 (Java 17, proyecto Firebase con Auth anónima + Realtime Database, `firebase login`).
 1. **Prueba de concepto de cliente Firebase en Godot** (Developer, apoyo Lead Programmer). Evaluar addon GodotFirebase en Android **y** Web contra el Emulator Suite (`auth,database`). Si el streaming no funciona en Web: `JavaScriptBridge` + SDK JS detrás de la misma interfaz `firebase_client.gd`. Documentar decisión en `docs/RED.md`. Si no hay solución viable, el Director decide si Web sale del MVP en línea.
 2. **Capa de red** (Developer): `src/net/firebase_client.gd` (auth anónima, get/set/update/push/remove/listen, reintentos), `room_service.gd` (código de sala de 5 caracteres sin 0/O/1/I, máx. 6, unirse solo en lobby), `state_view.gd` (separación público/privado sin fugas), `firebase/database.rules.json` (el miembro A no lee `private/B`, un no miembro no lee la sala, un cliente no escribe `public`).
@@ -65,7 +76,7 @@ Bloqueado por tareas manuales M3-M5 (Java 17, proyecto Firebase con Auth anónim
 - Presets Android (APK debug/release, vertical, permiso INTERNET, keystore por variables de entorno) y Web (sin hilos, para no necesitar COOP/COEP), `tools/build.sh [android-debug|android-release|web|linux]`, `firebase.json` hosting.
 - **Nunca desplegar sin confirmación del usuario** (M16): la URL de Hosting es pública y expondría el arte con copyright.
 
-## B4. Pulido  *(lo audiovisual pasa a v0.3, ver arriba; lo móvil y de rendimiento sigue aquí)*
+## B4. Pulido  *(lo visual entra en v0.3; lo móvil, audio y rendimiento en el dispositivo, en v0.4)*
 - Animaciones con `Tween` (robar, jugar, descartar, números flotantes), "Reducir animaciones".
 - Efectos por elemento (`CPUParticles2D`, compatibles con Web): fuego, hielo, electricidad.
 - Sonido opcional, desactivado por defecto, sin audio con copyright (generado o sintetizado).

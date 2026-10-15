@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## V2-29 (ítem 10): riesgo de la poción, "contra ti" y "Pasa el dispositivo" con motivo.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -7,11 +7,13 @@ var _t: TableScreen
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 
 
 func after_each() -> void:
+	await super.after_each()
 	if _t != null:
 		_t.queue_free()
 		_t = null

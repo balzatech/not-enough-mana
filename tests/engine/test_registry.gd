@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## Registro de efectos y catálogo (contrato T1).
 
 
@@ -10,6 +10,7 @@ static func _fake_effect(state: Dictionary, ctx: Dictionary) -> Dictionary:
 
 
 func before_each() -> void:
+	super.before_each()
 	EffectRegistry.reset()
 
 

@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6a: efectos de electricidad (Lightning y su cadena, Electric Explosion,
 ## Blinding Flash, Electric Arc, Paralysing Touch) con el catálogo real.
 
@@ -9,6 +9,7 @@ var s: Dictionary
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	s = OH.make_state(4)

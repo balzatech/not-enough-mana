@@ -1,4 +1,4 @@
-extends GutTest
+extends NemTest
 ## T6b: efectos de las defensivas y Force Field, jugadas a través de la ventana
 ## de reacción. Catálogo real; ofensivos falsos de engine_helpers
 ## (Lightning = 2, Ice Boomerang = 3).
@@ -7,6 +7,7 @@ const H = preload("res://tests/fixtures/engine_helpers.gd")
 
 
 func before_each() -> void:
+	super.before_each()
 	CardCatalog.load_json()
 	EffectRegistry.reset()
 	H.register_fake_effects()
