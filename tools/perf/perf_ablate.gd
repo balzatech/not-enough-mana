@@ -1,8 +1,8 @@
-extends "res://tests/perf/perf_final.gd"
+extends "res://tools/perf/perf_final.gd"
 ## Ablacion (V2-34): igual que perf_final.gd pero oculta (visible=false) una parte de la mesa tras montarla.
 ## Un subarbol oculto no se maqueta ni se dibuja, pero refresh() sigue haciendo su trabajo de nodos; la diferencia del
 ## fotograma con accion contra la ejecucion sin ocultar es el coste de maquetacion/dibujo diferido de esa parte.
-##   godot --path . -s tests/perf/perf_ablate.gd -- <jug> <ancho> <alto> <real|stress> <seg> <semilla> <parte>
+##   godot --path . -s tools/perf/perf_ablate.gd -- <jug> <ancho> <alto> <real|stress> <seg> <semilla> <parte>
 ## parte: none | hand | log | rivals | center | own | all  (all = las cinco)
 ## Salida: "PERF {json}" con el campo extra "ablate".
 

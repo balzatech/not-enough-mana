@@ -113,7 +113,7 @@ API (V2-22 la cablea; no hay componentes tocados aquí):
 - **Peso:** +760 KB en `assets/` (sin subconjunto: no hay `fonttools`/`pyftsubset` en esta máquina). Un subconjunto de ~10 glifos
   pesaría < 10 KB: `pyftsubset DejaVuSans.ttf --unicodes=U+25BC,U+25B2,U+26A0,U+2192,U+2713 --output-file=...` si el tamaño de la descarga Web importa
   (el pck se comprime; medir con `tools/build.sh`). Si se hace, renombrar la fuente según la licencia.
-- **Medido** (`tests/perf/perf_glyph.gd`, 12 textos por caso, ms por texto "▼ -3" / "▲ +3" / "▼ -3 maná"): antes 4,06 / 4,02 / 3,85; después 0,08 / 0,07 / 0,09.
+- **Medido** (`tools/perf/perf_glyph.gd`, 12 textos por caso, ms por texto "▼ -3" / "▲ +3" / "▼ -3 maná"): antes 4,06 / 4,02 / 3,85; después 0,08 / 0,07 / 0,09.
   Textos sin glifo no cambian (0,05 -> 0,07-0,08, ruido).
 - **Capturas** (mesa 720x1280, sin editar `capture.gd`): `docs/revision/capturas/v2-p1-antes-mesa.png` / `v2-p1-despues-mesa.png` idénticas;
   `v2-p1-antes-feedback.png` / `v2-p1-despues-feedback.png` (números flotantes ▼/▲) iguales salvo el instante de la animación.

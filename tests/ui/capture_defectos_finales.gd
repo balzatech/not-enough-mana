@@ -50,7 +50,6 @@ func _run(which: String, out: String, w: int, h: int, n: int) -> void:
 		vp.add_child(st)
 	else:
 		var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-		t.demo_when_empty = false
 		vp.add_child(t)
 		var ls: LocalSession = LocalSession.new()
 		ls.start(_state(which, n), 21)

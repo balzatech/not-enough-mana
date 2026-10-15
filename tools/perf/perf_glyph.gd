@@ -1,7 +1,7 @@
-extends "res://tests/perf/perf_final.gd"
+extends "res://tools/perf/perf_final.gd"
 ## Coste de dar forma ("reset_size") al texto de los numeros flotantes segun el glifo y la fuente (V2-34).
 ## Hipotesis medida: el glifo ▼/▲ no esta en la fuente por defecto del motor y cada texto cae a la busqueda de fuente del sistema.
-##   godot --path . -s tests/perf/perf_glyph.gd
+##   godot --path . -s tools/perf/perf_glyph.gd
 ## Salida: lineas "GLYPH ..." (no "PERF"). Variante B simula una fuente empaquetada con los glifos (DejaVu del sistema, solo para el experimento).
 
 func _run(_args: PackedStringArray) -> void:

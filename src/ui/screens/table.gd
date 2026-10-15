@@ -23,9 +23,6 @@ signal play_again_requested
 
 const Step = TableContext.Step
 
-## Si true y no hay sesión ni vista al arrancar, muestra una partida de demostración.
-var demo_when_empty: bool = true
-
 var session: GameSession:
 	get: return _ctx.session
 	set(value): _ctx.session = value
@@ -41,7 +38,7 @@ var ctx: TableContext:
 
 ## Número de refresh() completos (tests: ningún feedback debe disparar uno).
 var refresh_count: int = 0
-## Perfilado opcional de refresh() por paso (ms acumulados; ver tests/perf).
+## Perfilado opcional de refresh() por paso (ms acumulados; ver tools/perf).
 var profile_refresh: bool = false
 var refresh_profile: Dictionary = {}
 
@@ -88,10 +85,6 @@ func _ready() -> void:
 	if UiNav.pending_session != null:
 		bind_session(UiNav.pending_session)
 		UiNav.pending_session = null
-	elif demo_when_empty and view.is_empty():
-		FakeState.install_defs()
-		var fs: FakeSession = FakeSession.create(FakeState.make_state(4), ["p1"] as Array[String])
-		bind_session(fs)
 
 
 # ---------------------------------------------------------------- construcción

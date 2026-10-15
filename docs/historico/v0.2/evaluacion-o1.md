@@ -1,6 +1,6 @@
 # Evaluación de la oleada 1 de v0.2 (puerta V2-21)
 
-Autor: Game Director. Fecha: 2026-10-13. Base: `docs/qa/puerta-o1.md` (QA recomienda aceptar con reservas), `docs/qa/bugs.md` (QA-V2-21-01 a 06), `docs/qa/metricas-base.md`, `docs/rendimiento/v02-base.md`, `docs/diseno/escenarios/mesa-5-6-jugadores.md`, capturas `v02-base-*`.
+Autor: Game Director. Fecha: 2026-10-13. Base: `docs/historico/v0.2/puerta-o1.md` (QA recomienda aceptar con reservas), `docs/qa/bugs.md` (QA-V2-21-01 a 06), `docs/qa/metricas-base.md`, `docs/historico/v0.2/v02-base.md`, `docs/diseno/escenarios/mesa-5-6-jugadores.md`, capturas `v02-base-*`.
 Límites: no he ejecutado nada ni jugado. Me apoyo en lo que QA ejecutó (465/465 tests, warnings OK, 200/200 partidas, 0 eliminaciones por Too Much Mana) y en la captura `v02-base-inicio-720x1280.png`, que he mirado.
 
 ## 1. Veredicto: APROBADO CON CAMBIOS para pasar a la oleada 2
@@ -27,7 +27,7 @@ Por qué "con cambios": dos reservas afectan a cómo se construye la oleada 2 (r
 El Lead Programmer ya decidió el refresco incremental de paneles y centro; no lo cambio. Fijo qué se acepta:
 - **Exigible al cerrar V2-22:** (1) ningún feedback dispara un `refresh()` completo; (2) los fotogramas sin `state_changed` con animaciones en curso, p95 ≤ 16 ms (modo `real`, 3j y 6j a 1080); (3) el fotograma con acción no empeora la base (p95 ≤ 57 ms); (4) el informe trae el desglose de `refresh()` por módulo.
 - **Objetivo (no bloqueante en O2):** fotograma con acción p95 ≤ 33 ms.
-- **Meta de v0.2** (se juzga en V2-34, sin cambios): p95 ≤ 16 ms, o informe con causa y propuesta. Medición con `tests/perf/perf_table.gd`.
+- **Meta de v0.2** (se juzga en V2-34, sin cambios): p95 ≤ 16 ms, o informe con causa y propuesta. Medición con `tools/perf/perf_table.gd`.
 
 ## 2. Tamaño táctil: decisión (a), con validación en M12
 

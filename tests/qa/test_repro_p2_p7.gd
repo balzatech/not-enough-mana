@@ -2,7 +2,7 @@ extends GutTest
 ## V2-01 (QA): confirmación reproducible de dos fallos del MVP.
 ##   P2: registro (LogText) con claves/datos que no coinciden con lo que escribe el motor.
 ##   P7: el bot se elimina solo por Too Much Mana al no saber contestar al prompt oculto de Magic Hand.
-## Informe: docs/qa/confirmacion-p2-p7.md.
+## Informe: docs/historico/v0.2/confirmacion-p2-p7.md.
 ##
 ## Convención: cada fallo tiene
 ##   * un test "estado actual" que PASA documentando el defecto (si alguien lo arregla, este test

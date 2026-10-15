@@ -1,9 +1,9 @@
 extends SceneTree
 ## Benchmark de la mesa (V2-20). NO es un test GUT (no empieza por test_ y no
 ## está en una carpeta que GUT incluya con prefijo test_). Necesita GPU/pantalla.
-##   godot --path . -s tests/perf/perf_table.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
+##   godot --path . -s tools/perf/perf_table.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
 ## modo: real (retardo de bot por defecto 600-900 ms) | stress (retardo 0: una acción de bot por fotograma)
-## Salida: una línea "PERF {json}". Agregar con tests/perf/run_v02_base.sh.
+## Salida: una línea "PERF {json}". Agregar con tools/perf/run_v02_base.sh.
 ## La partida: p1 humano (lo juega el script con Bot.choose_action) + bots.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
@@ -92,7 +92,6 @@ func _run(args: PackedStringArray) -> void:
 		ls.bot_delay_max_ms = 0
 	var t0: int = Time.get_ticks_usec()
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	vp.add_child(t)
 	out["instantiate_ms"] = (Time.get_ticks_usec() - t0) / 1000.0
 	t0 = Time.get_ticks_usec()

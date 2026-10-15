@@ -29,7 +29,6 @@ func _run(mode: String, out: String, w: int, h: int) -> void:
 	vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	vp.add_child(t)
 	t.set_view(Types.view_for(s, "p1"), "p1")
 	if mode == "pass":

@@ -41,7 +41,7 @@ Después de v0.3: animaciones de cartas y efectos por elemento, tutorial guiado 
 - **Ficha en español**: solo si no se completa en v0.2 (los resúmenes V2-11 a V2-12 y V2-28 son las tareas que podrían moverse).
 - Variante por equipos (si el usuario la quiere).
 - **Seguimiento del Game Designer (de `docs/qa/metricas-base.md`, V2-02):** 14 de 47 cartas no-evento no se juegan nunca en 200 partidas de bots (magic_capture, annihilation, space_shift, curse_of_rules, fireproof_tiara, padded_boots, faradays_cloak, wild_fire, dragon_glass, tesla_coil, spellbook, scroll_of_elements, transformation_glove, twardowskys_mirror). Revisar con la línea base corregida (V2-38) cuántas siguen sin jugarse, y si es la heurística del bot (que no usa artefactos ni utilidades) o la carta. **Sin cambiar reglas**; cualquier cambio con efecto en la partida lo decide el usuario.
-- **Memoria de texturas (~280 MB, `docs/rendimiento/v02-base.md` §2):** no afecta al escritorio; revisar antes de M13/M14 (builds Android y Web, aún inexistentes). Lead Programmer + Technical Artist.
+- **Memoria de texturas (~280 MB, `docs/historico/v0.2/v02-base.md` §2):** no afecta al escritorio; revisar antes de M13/M14 (builds Android y Web, aún inexistentes). Lead Programmer + Technical Artist.
 - **Bloqueo por límite de pociones (E6):** si tras V2-42 sigue habiendo > 2 % de partidas > 100 turnos o un humano puede atascarse, implementar la opción que elija el usuario según V2-43 (cambio de regla: solo con su aprobación).
 - **Si no caben en v0.2:** V2-44 (registro redundante en la reacción) y la optimización del fotograma con acción hasta <= 16 ms (V2-34 informa).
 - Mejorar la medición: la duración en minutos no sale de la simulación (solo turnos y pasos); se mide en M12.

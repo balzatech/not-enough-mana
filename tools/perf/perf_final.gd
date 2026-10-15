@@ -1,12 +1,12 @@
 extends SceneTree
 ## Benchmark final de la mesa (V2-34). NO es un test GUT. Necesita GPU/pantalla (no headless).
-##   godot --path . -s tests/perf/perf_final.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
+##   godot --path . -s tools/perf/perf_final.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
 ## modo:
 ##   real   retardo de bot por defecto (600-900 ms); fotogramas + desglose de lo que se hace en el fotograma con acción
 ##   stress retardo 0 (una acción de bot por fotograma)
 ##   ui     coste de abrir la ficha, el zoom, la ayuda y la pantalla de fin (ms de construcción + fotograma siguiente)
 ##   leak   3 partidas completas seguidas en la misma sesión; nodos/objetos/memoria tras liberar la mesa
-## Salida: una línea "PERF {json}". Agregar con tests/perf/aggregate_final.py. Orquesta: tests/perf/run_v02_final.sh.
+## Salida: una línea "PERF {json}". Agregar con tools/perf/aggregate_final.py. Orquesta: tools/perf/run_v02_final.sh.
 ## Mismo método que perf_table.gd (V2-20): SubViewport 1080x1920 (o 720x1280 con size_2d_override 1080x1920),
 ## vsync desactivado, p1 humano jugado por el script con Bot.choose_action, resto bots.
 
@@ -114,7 +114,6 @@ func _make_table(vp: SubViewport, stress: bool, out: Dictionary) -> void:
 		_ls.bot_delay_max_ms = 0
 	var t0: int = Time.get_ticks_usec()
 	_t = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	_t.demo_when_empty = false
 	vp.add_child(_t)
 	out["instantiate_ms"] = (Time.get_ticks_usec() - t0) / 1000.0
 	t0 = Time.get_ticks_usec()
@@ -600,7 +599,6 @@ func _mode_ui(vp: SubViewport, out: Dictionary, _secs: float) -> void:
 	# Mesa nueva enlazada a la sesión ya terminada: construcción completa del fin (bind + refresh + check()).
 	var t_bind0: int = Time.get_ticks_usec()
 	var t2: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t2.demo_when_empty = false
 	vp.add_child(t2)
 	var tb: int = Time.get_ticks_usec()
 	t2.bind_session(_ls)

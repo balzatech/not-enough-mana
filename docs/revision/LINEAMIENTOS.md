@@ -161,7 +161,7 @@ Están registradas en `docs/ESCALADOS.md` con sus opciones.
 **Aprobado** si: los 12 ítems cumplen su criterio "hecho cuando", los tests y los warnings están en verde, QA aporta las métricas de la sección 3 y en la prueba M12 el usuario responde "sí" a "¿supiste siempre qué te pasó?". **Aprobado con cambios** si fallan los ítems 10-12. **Rechazado** si falla alguno de los ítems 1, 3, 7 o 9.
 
 ## Nota del Director, 2026-10-13 (tras la puerta de la oleada 1)
-Detalle en `docs/revision/evaluacion-o1.md`. No reescribe lo anterior; lo corrige o amplía:
+Detalle en `docs/historico/v0.2/evaluacion-o1.md`. No reescribe lo anterior; lo corrige o amplía:
 - **Tamaño táctil (corrige §3 Technical Artist y ítem 12):** "96 px ≈ 48 dp" era un error: 96 px a 1080 ≈ 32 dp. Criterio vigente: **144 px a 1080 (≈ 48 dp) en los botones de acción principal** (Beber poción; Pasar y respuestas en la reacción; fila Jugar/Intercambiar/Descartar/Terminar turno; Confirmar; botón principal de cada pantalla) y **96 px en el resto**; ≥ 24 px alrededor de Beber poción.
 - **Ítem 9 (bots) se amplía** con las partidas largas (QA-V2-21-02): en 200 simulaciones, ≤ 4 partidas > 100 turnos de jugador, 0 > 200 y media ≤ 30 turnos, además de los criterios anteriores (V2-41, V2-42). Sin cambiar reglas; la pregunta de regla es E6 para el usuario.
 - **Ítem 1 (feedback):** criterio intermedio de rendimiento para V2-22 (fotogramas de animación p95 ≤ 16 ms, fotograma con acción sin empeorar la base); la meta de 60 fps sigue en V2-34.

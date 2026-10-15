@@ -1,6 +1,6 @@
 # V2-34 Medición final de la mesa (después de feedback animado, tema nuevo, iconos de estado, ficha, fin y ayuda)
 
-Fecha 2026-10-13. Sin cambios de código de producción (solo `docs/rendimiento/` y `tests/perf/`). Misma máquina y método que `v02-base.md` (V2-20): Godot 4.7.2, gl_compatibility, Mesa 26.0.3, AMD Radeon Vega 10 (iGPU), Wayland :0, vsync desactivado y `max_fps=0`; render a SubViewport 1080x1920 o 720x1280 con `size_2d_override` 1080x1920; semilla 11; p1 humano jugado por el script con `Bot.choose_action`, resto bots; **3 repeticiones por configuración, cada una en un proceso nuevo, bajo `flock .godot/nem-godot.lock`, sin la suite ni otro agente usando la CPU**. Datos crudos en `tests/perf/` (ver "Reproducir"). Todo lo de abajo es medido salvo lo marcado "estimado".
+Fecha 2026-10-13. Sin cambios de código de producción (solo `docs/rendimiento/` y `tools/perf/`). Misma máquina y método que `v02-base.md` (V2-20): Godot 4.7.2, gl_compatibility, Mesa 26.0.3, AMD Radeon Vega 10 (iGPU), Wayland :0, vsync desactivado y `max_fps=0`; render a SubViewport 1080x1920 o 720x1280 con `size_2d_override` 1080x1920; semilla 11; p1 humano jugado por el script con `Bot.choose_action`, resto bots; **3 repeticiones por configuración, cada una en un proceso nuevo, bajo `flock .godot/nem-godot.lock`, sin la suite ni otro agente usando la CPU**. Datos crudos en `tools/perf/` (ver "Reproducir"). Todo lo de abajo es medido salvo lo marcado "estimado".
 
 ## Veredicto contra el presupuesto
 
@@ -19,21 +19,21 @@ Cambios frente a la base: p95 con acción -53 a -55 %, p50 -60 a -65 %, máximo 
 
 ```
 # Matriz completa (3j y 6j x 1080 y 720 x real 30 s y stress 15 s, mas ui y leak, 3 repeticiones): ~25 min, GPU real, nada mas corriendo
-DISPLAY=:0 bash tests/perf/run_v02_final.sh > /tmp/perf_v02_final.txt
-python3 -I tests/perf/aggregate_final.py /tmp/perf_v02_final.txt          # media, sd, min, max de cada campo
+DISPLAY=:0 bash tools/perf/run_v02_final.sh > /tmp/perf_v02_final.txt
+python3 -I tools/perf/aggregate_final.py /tmp/perf_v02_final.txt          # media, sd, min, max de cada campo
 
 # Una sola configuracion (modos: real | stress | ui | leak)
-DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_final.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
-NEM_LEAK_GAMES=10 DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_final.gd -- 6 1080 1920 leak 60 11
+DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_final.gd -- <jugadores> <ancho> <alto> <modo> <segundos> [semilla]
+NEM_LEAK_GAMES=10 DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_final.gd -- 6 1080 1920 leak 60 11
 
 # Complementos
-DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_ablate.gd -- 3 1080 1920 real 30 11 <none|hand|log|rivals|center|own|all>
-DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_layer.gd -- 3 1080 1920 real 1 11    # desglose de FeedbackLayer.play
-DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_glyph.gd                              # coste del glifo ▼▲ y arreglo simulado
-flock .godot/nem-godot.lock godot --headless --path . -s tests/perf/perf_bot.gd -- <3|6> 8 1                    # coste por accion de bot, sin UI
-flock .godot/nem-godot.lock godot --headless --path . -s tests/perf/perf_objects.gd -- 6                        # deriva de objetos sin UI
+DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_ablate.gd -- 3 1080 1920 real 30 11 <none|hand|log|rivals|center|own|all>
+DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_layer.gd -- 3 1080 1920 real 1 11    # desglose de FeedbackLayer.play
+DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_glyph.gd                              # coste del glifo ▼▲ y arreglo simulado
+flock .godot/nem-godot.lock godot --headless --path . -s tools/perf/perf_bot.gd -- <3|6> 8 1                    # coste por accion de bot, sin UI
+flock .godot/nem-godot.lock godot --headless --path . -s tools/perf/perf_objects.gd -- 6                        # deriva de objetos sin UI
 ```
-Crudos: `v02-final-raw.txt` (matriz final, 48 ejecuciones), `v02-final-raw-run1.txt` (primera pasada idéntica, antes de añadir p99 y los contadores de fotogramas > 16 ms), `v02-final-ablate-raw.txt`, `v02-final-bot-raw.txt`. `perf_final.gd` no edita `src/`: usa `TableScreen.profile_refresh`/`refresh_profile` (ya existían) y sustituye en el árbol las conexiones de `TableSync.on_state_changed`, `PresentationBus.ingest`, `FeedbackLayer.play` y del temporizador de bots por envoltorios que cronometran y llaman a lo mismo.
+Crudos (eliminados del repositorio el 2026-10-14 por limpieza; se regeneran con los comandos de arriba): `v02-final-raw.txt` (matriz final, 48 ejecuciones), `v02-final-raw-run1.txt` (primera pasada idéntica, antes de añadir p99 y los contadores de fotogramas > 16 ms), `v02-final-ablate-raw.txt`, `v02-final-bot-raw.txt`. `perf_final.gd` no edita `src/`: usa `TableScreen.profile_refresh`/`refresh_profile` (ya existían) y sustituye en el árbol las conexiones de `TableSync.on_state_changed`, `PresentationBus.ingest`, `FeedbackLayer.play` y del temporizador de bots por envoltorios que cronometran y llaman a lo mismo.
 
 Definiciones: "fotograma con acción" = el que contiene un `state_changed` (igual que V2-20). "Con animación sin acción" = fotograma sin `state_changed` con el bus con items pendientes o la capa con números/destellos activos (~50 % de todos los fotogramas). Con ~45-57 fotogramas con acción por ejecución, **el p95 lo fijan los 3 peores**: desviación entre repeticiones 0,3-1,9 ms; entre la pasada 1 y la final hubo hasta 2,7 ms de diferencia en 6j (29,5 frente a 26,8). Léase "26 ± 2 ms".
 
@@ -113,7 +113,7 @@ Otras mediciones del bus de feedback (fixture: partida tras 25 acciones del huma
 
 ### Causa medida de `FeedbackLayer.play`: el glifo ▼/▲
 
-`FeedbackLayer.play` cuesta 2,5-3,5 ms por número en estado estable en `perf_layer.gd` (hasta 6 ms; 26 ms la primera vez); en partida, tras las 10 primeras llamadas, 6,4 ms de media en 3j y 4,0 en 6j (máx. 17 y 11 ms). En el desglose de `play`, `FloatingText.reset_size()` es 2,48 ms de cada llamada y el resto de pasos <0,1 ms. `tests/perf/perf_glyph.gd`: forma del texto de un número flotante (ms por texto nuevo, media):
+`FeedbackLayer.play` cuesta 2,5-3,5 ms por número en estado estable en `perf_layer.gd` (hasta 6 ms; 26 ms la primera vez); en partida, tras las 10 primeras llamadas, 6,4 ms de media en 3j y 4,0 en 6j (máx. 17 y 11 ms). En el desglose de `play`, `FloatingText.reset_size()` es 2,48 ms de cada llamada y el resto de pasos <0,1 ms. `tools/perf/perf_glyph.gd`: forma del texto de un número flotante (ms por texto nuevo, media):
 
 | Texto | Fuente por defecto (hoy) | Con la fuente de respaldo explícita (simulada, DejaVu) |
 |---|---|---|
@@ -164,7 +164,7 @@ Ninguna ocurre dentro del flujo de acción, pero **la ayuda tarda 41-46 ms en ab
 
 ## Cuellos de botella restantes y propuestas (medibles, priorizadas; **ninguna aplicada**)
 
-Estimaciones sobre las cifras de arriba; cada una indica cómo comprobarla con los scripts de `tests/perf/`.
+Estimaciones sobre las cifras de arriba; cada una indica cómo comprobarla con los scripts de `tools/perf/`.
 
 | # | Propuesta | Dueño | Ganancia esperada (estimada a partir de lo medido) | Cómo verificarla |
 |---|---|---|---|---|

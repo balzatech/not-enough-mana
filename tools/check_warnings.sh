@@ -3,7 +3,7 @@
 # En modo headless Godot no imprime los warnings, así que este script crea un
 # override.cfg temporal que convierte en ERROR cada warning activo del proyecto
 # (más los de variables/parámetros sin usar) y ejecuta --check-only por archivo.
-# Uso: tools/check_warnings.sh [ruta ...]   (por defecto: src y tests)
+# Uso: tools/check_warnings.sh [ruta ...]   (por defecto: src, tests y tools)
 set -u
 cd "$(dirname "$0")/.."
 GODOT="${GODOT:-$(command -v godot || echo "$HOME/.local/bin/godot")}"
@@ -30,7 +30,7 @@ gdscript/warnings/static_called_on_instance=2
 gdscript/warnings/unreachable_code=2
 gdscript/warnings/standalone_expression=2
 CFG
-dirs=("$@"); [ ${#dirs[@]} -eq 0 ] && dirs=(src tests)
+dirs=("$@"); [ ${#dirs[@]} -eq 0 ] && dirs=(src tests tools)
 fail=0
 while IFS= read -r f; do
   out=$("$GODOT" --headless --path . --check-only --script "res://$f" 2>&1 | grep -E "SCRIPT ERROR|ERROR:" -A1)

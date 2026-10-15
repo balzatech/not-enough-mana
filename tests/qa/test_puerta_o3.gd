@@ -1,7 +1,7 @@
 extends GutTest
 ## V2-32 (QA, puerta de la oleada 3). Casos escritos desde los criterios de V2-28, 29, 30, 42, 45 y 31,
 ## independientes de los tests de cada tarea (otros escenarios, semillas y configuraciones).
-## Informe: docs/qa/puerta-o3.md.
+## Informe: docs/historico/v0.2/puerta-o3.md.
 
 const H = preload("res://tests/fixtures/engine_helpers.gd")
 const SUMMARIES: String = "res://data/card_summaries_es.json"
@@ -28,7 +28,6 @@ func _read(path: String) -> String:
 
 func _table(s: Dictionary, viewer: String = "p1") -> TableScreen:
 	_t = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	_t.demo_when_empty = false
 	add_child_autofree(_t)
 	_t.set_view(Types.view_for(s, viewer), viewer)
 	return _t

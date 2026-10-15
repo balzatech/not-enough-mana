@@ -60,7 +60,7 @@ Siguiente paso recomendado y para quién: ...
 | Technical Artist | `src/ui/theme*`, `src/ui/shaders/**`, `assets/**/*.import`, `docs/arte/tecnico.md` | — |
 | Audio | `assets/audio/**`, `src/audio/**`, `docs/audio/**` | — |
 | Producer | `docs/TAREAS.md`, `docs/BACKLOG.md`, `docs/ESCALADOS.md` (estado) | todo |
-| Performance | `docs/rendimiento/**`, `tests/perf/**`, cambios de optimización **solo si la tarea lo autoriza** | todo |
+| Performance | `docs/rendimiento/**`, `tools/perf/**`, cambios de optimización **solo si la tarea lo autoriza** | todo |
 | Narrative | `docs/narrativa/**`, textos en `data/` y `src/ui/strings*` si la tarea lo autoriza | — |
 | Build & Release | `tools/build.sh`, `export_presets.cfg`, `firebase/firebase.json` (hosting), `docs/RELEASE.md`, `CHANGELOG.md` | — |
 

@@ -30,7 +30,6 @@ func test_zoom_abierto_cubre_el_padre_y_tiene_fondo() -> void:
 
 func test_zoom_de_la_mesa_tiene_tamano_y_se_cierra_con_toque() -> void:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.set_view(FakeState.make_view(4, "p1"), "p1")
 	await get_tree().process_frame

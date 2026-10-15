@@ -38,7 +38,6 @@ func _finished_view(n: int, tie: bool = false) -> Dictionary:
 
 func _table(v: Dictionary) -> TableScreen:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.set_view(v, "p1")
 	return t

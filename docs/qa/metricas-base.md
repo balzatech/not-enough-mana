@@ -1,6 +1,6 @@
 # Métricas base con los bots de V2-42 (V2-32)
 
-**Línea base vigente** para V2-34 y V2-35. Sustituye a la de V2-38 (bots previos a V2-42), conservada en `docs/qa/metricas-base-v02-bots-previos.md` y, más atrás, `docs/qa/metricas-base-mvp-sesgada.md`.
+**Línea base vigente** para V2-34 y V2-35. Sustituye a la de V2-38 (bots previos a V2-42), conservada en `docs/historico/v0.2/metricas-base-v02-bots-previos.md` y, más atrás, `docs/historico/v0.2/metricas-base-mvp-sesgada.md`.
 
 - Fecha: 2026-10-13. Godot 4.7.2.stable. Código con la política de bots de V2-42 (`src/ai/bot.gd`, `bot_eval.gd`); motor y cartas sin cambios desde V2-38.
 - Comando: `/home/brayan/.local/bin/godot --headless --path . -s tools/sim.gd -- --games 200 --seed 1 --json salida.json` (partida `g` con semilla `1+g`, 3 + g mod 4 jugadores: 50 de cada tamaño, efectos reales, tope 2000 pasos, bots con `randomness` 0).

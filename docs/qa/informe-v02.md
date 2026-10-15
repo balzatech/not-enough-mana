@@ -128,8 +128,8 @@ Resumen: `--games 200 --seed 1` **dos veces idénticas** (texto y JSON, `cmp`); 
 
 ## 7. Permisos de archivos y deuda técnica
 
-Comparado con `find ... -newer docs/qa/puerta-o3.md` (no hay git; las comparaciones son por fecha de modificación):
-- **Dentro de lista:** `player_panel`, `stat_chip`, `card_view`, `hand_view`, `table_players/center/hand/actions/mode_bar/menu/notices/dialogs` y `tests/ui/test_legibility.gd`, `capture_legibility.gd` (V2-33); `tests/perf/*` y `docs/rendimiento/v02-final.md` (V2-34); `assets/fonts/*`, `ui_theme.gd`, `theme.tres`, `test_glyph_fallback.gd` (P1); `local_session.gd`, `test_local_reduce_once.gd` (P2).
+Comparado con `find ... -newer docs/historico/v0.2/puerta-o3.md` (no hay git; las comparaciones son por fecha de modificación):
+- **Dentro de lista:** `player_panel`, `stat_chip`, `card_view`, `hand_view`, `table_players/center/hand/actions/mode_bar/menu/notices/dialogs` y `tests/ui/test_legibility.gd`, `capture_legibility.gd` (V2-33); `tools/perf/*` y `docs/rendimiento/v02-final.md` (V2-34); `assets/fonts/*`, `ui_theme.gd`, `theme.tres`, `test_glyph_fallback.gd` (P1); `local_session.gd`, `test_local_reduce_once.gd` (P2).
 - **Fuera de la lista de V2-33 (informativo, QA-V2-35-08):** `src/ui/presentation/feedback_layer.gd`, `src/ui/card_info.gd`, `src/ui/screens/table/table_game_over.gd`, `reaction_prompt.gd` y `prompt_dialog.gd` (la fila permite `screens/*.gd` "solo tamaños"; los cambios de comportamiento de riesgo/contexto no se pueden distinguir sin historial).
 - **Tests de otros editados:** `tests/qa/test_puerta_o3.gd` (mtime 20:50, posterior a mi puerta O3; contenido no verificable sin historial; sigue verde) y `tests/ui/test_theme_constants.gd` (V2-40, mtime 22:19, probablemente P1). La suite pasa y no vi aserciones debilitadas, pero no puedo demostrarlo.
 - `tools/sim.gd`, `tools/test.sh`, `tools/check_warnings.sh`, `src/engine/**`, `src/ai/**`, `data/cards.json`: **sin cambios** desde la puerta O3.

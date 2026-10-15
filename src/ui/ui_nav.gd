@@ -72,26 +72,3 @@ static func make_local_session(setup: Dictionary) -> GameSession:
 		# Una preferencia por dispositivo (hot-seat incluido); la sesión sola usa "all".
 		(gs as LocalSession).reaction_notify = Settings.load_reaction_notify()
 	return gs
-
-
-## Sesión de maqueta (FakeSession) con los jugadores de `setup` (solo pruebas).
-static func make_fake_session(setup: Dictionary) -> GameSession:
-	var plist: Array = setup.get("players", []) as Array
-	var state: Dictionary = FakeState.make_state(plist.size())
-	var ids: Array[String] = []
-	for i: int in plist.size():
-		var pd: Dictionary = plist[i]
-		var p: Dictionary = (state["players"] as Array)[i]
-		p["name"] = String(pd.get("name", p["name"]))
-		p["age"] = int(pd.get("age", 30))
-		p["birth_month"] = int(pd.get("birth_month", 1))
-		p["is_bot"] = bool(pd.get("is_bot", false))
-		p["eliminated"] = false
-		p["connected"] = true
-		(p["flags"] as Dictionary)["frozen"] = 0
-		if not bool(p["is_bot"]):
-			ids.append(String(p["id"]))
-	var cfg: Dictionary = state["config"]
-	for k: Variant in (setup.get("config", {}) as Dictionary):
-		cfg[k] = (setup["config"] as Dictionary)[k]
-	return FakeSession.create(state, ids)

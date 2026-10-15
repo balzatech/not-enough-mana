@@ -32,7 +32,6 @@ func _run(which: String, out: String, sd: int) -> void:
 	vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	vp.add_child(t)
 	var ls: LocalSession
 	if which == "reaction" or which == "payment":

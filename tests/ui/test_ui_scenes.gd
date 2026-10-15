@@ -8,9 +8,6 @@ const SCENES: Array[String] = [
 	"res://src/ui/screens/settings.tscn",
 	"res://src/ui/screens/table.tscn",
 	"res://src/ui/screens/pass_device_screen.tscn",
-	"res://src/ui/screens/reaction_prompt.tscn",
-	"res://src/ui/components/card_view.tscn",
-	"res://src/ui/components/player_panel.tscn",
 ]
 
 var _actions: Array[Dictionary] = []
@@ -32,7 +29,6 @@ func _on_action(a: Dictionary) -> void:
 
 func _table(n: int, pid: String = "p1") -> TableScreen:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.action_requested.connect(_on_action)
 	t.set_view(FakeState.make_view(n, pid), pid)
@@ -52,8 +48,6 @@ func test_scenes_instantiate() -> void:
 		assert_not_null(ps, "carga " + path)
 		var n: Node = ps.instantiate()
 		assert_not_null(n, "instancia " + path)
-		if n is TableScreen:
-			(n as TableScreen).demo_when_empty = false
 		add_child_autofree(n)
 		await wait_process_frames(2)
 		assert_true(is_instance_valid(n), path)
@@ -132,7 +126,6 @@ func _rich_table(n: int, tweak: Callable = Callable()) -> TableScreen:
 	if tweak.is_valid():
 		tweak.call(st)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.action_requested.connect(_on_action)
 	t.set_view(Types.view_for(st, "p1"), "p1")
@@ -195,7 +188,6 @@ func test_reaction_prompt_pass_and_react() -> void:
 	FakeState.with_reaction(st)
 	(Types.get_player(st, "p1"))["mana"] = 5
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.action_requested.connect(_on_action)
 	t.set_view(Types.view_for(st, "p1"), "p1")
@@ -215,7 +207,6 @@ func test_prompt_dialog_actions() -> void:
 	var st: Dictionary = FakeState.make_state(3)
 	st["pending"] = [Types.make_prompt(9, "p1", Types.PROMPT_DRINK_OR_SUFFER, {"hp": 2})]
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.action_requested.connect(_on_action)
 	t.set_view(Types.view_for(st, "p1"), "p1")
@@ -231,7 +222,6 @@ func test_hot_seat_shows_pass_screen_between_humans() -> void:
 	(Types.get_player(st, "p2"))["is_bot"] = false
 	var fs: FakeSession = FakeSession.create(st, ["p1", "p2"] as Array[String])
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	add_child_autofree(fs)
 	t.bind_session(fs)

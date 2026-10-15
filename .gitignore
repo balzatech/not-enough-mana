@@ -23,3 +23,11 @@ data/card_summaries_es.json
 docs/revision/capturas/
 docs/revision/salidas/
 assets/cardback.webp.import
+
+# Resúmenes en español de las cartas y su validación: texto derivado de material con copyright
+# (© SUPERHOTEX). Igual que data/card_summaries_es.json (decisión M19). Siguen en el disco.
+docs/narrativa/resumenes-cartas.md
+docs/diseno/validacion-resumenes.md
+
+# Configuración temporal que escribe tools/check_warnings.sh (no debe versionarse nunca)
+override.cfg

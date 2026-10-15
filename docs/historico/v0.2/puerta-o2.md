@@ -46,11 +46,11 @@ Nota de proceso: `tools/test.sh` toma ya el candado; envolverlo en otro `flock` 
 
 Límites de tamaño (ejecutado, `wc -l`): `table.gd` 400; el límite de 400 de `division-table.md`/`ARQUITECTURA.md` es para la mesa (`table.gd` + `table/*`, el mayor de `table/` es `table_flow.gd` con 246). Fuera de la mesa, `src/session/local_session.gd` tiene 489 líneas tras V2-25b (no está sujeto a esa regla; lo anoto por si el Lead quiere dividirlo antes de V2-30+). Ningún módulo de `table/` > 400. `table_context.gd` y `table_dialogs.gd` no se tocaron (no están en la lista de ficheros modificados desde la puerta O1).
 
-Rutas editadas (comparado con `find -newer docs/qa/puerta-o1.md`): todo dentro de las listas de las filas, salvo (a) V2-24: dos tests antiguos; (b) V2-26c: `game_over_summary.gd` en `components/`; (c) V2-40: `theme.tres`; (d) V2-22/23: `tests/ui/capture_feedback.gd` y `capture_hand_info.gd` (herramientas de captura nuevas, no tests); (e) V2-41: `tests/qa/test_sim_bloqueo.gd` (test del sim, no en la lista); (f) `src/ui/strings_ayuda.gd.uid` (artefacto de importación). Ninguna afecta a reglas.
+Rutas editadas (comparado con `find -newer docs/historico/v0.2/puerta-o1.md`): todo dentro de las listas de las filas, salvo (a) V2-24: dos tests antiguos; (b) V2-26c: `game_over_summary.gd` en `components/`; (c) V2-40: `theme.tres`; (d) V2-22/23: `tests/ui/capture_feedback.gd` y `capture_hand_info.gd` (herramientas de captura nuevas, no tests); (e) V2-41: `tests/qa/test_sim_bloqueo.gd` (test del sim, no en la lista); (f) `src/ui/strings_ayuda.gd.uid` (artefacto de importación). Ninguna afecta a reglas.
 
 ## 3. Rendimiento de V2-22 (ejecutado, `perf_table.gd`, 1080x1920, modo `real`, 30 s, 3 repeticiones, máquina libre)
 
-Comando: `DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tests/perf/perf_table.gd -- {3|6} 1080 1920 real 30`. Ms por fotograma; "activo" = fotograma con `state_changed`.
+Comando: `DISPLAY=:0 flock .godot/nem-godot.lock godot --path . -s tools/perf/perf_table.gd -- {3|6} 1080 1920 real 30`. Ms por fotograma; "activo" = fotograma con `state_changed`.
 
 | Config | p95 todos los fotogramas (animación en curso, sin acción) | activo p95 (3 rep.) | activo p50 | activo máx | Nodos mesa |
 |---|---|---|---|---|---|

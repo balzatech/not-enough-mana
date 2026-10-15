@@ -2,7 +2,7 @@
 
 > Conservada por V2-32 como referencia histórica: **ya no es la línea base vigente**. La vigente es `docs/qa/metricas-base.md` (bots de V2-42).
 
-Línea base vigente para V2-27 (reacciones) y V2-34. Sustituye a la medición del MVP, sesgada por el bug del bot con el prompt oculto de Magic Hand (conservada en `docs/qa/metricas-base-mvp-sesgada.md`, solo histórico).
+Línea base vigente para V2-27 (reacciones) y V2-34. Sustituye a la medición del MVP, sesgada por el bug del bot con el prompt oculto de Magic Hand (conservada en `docs/historico/v0.2/metricas-base-mvp-sesgada.md`, solo histórico).
 
 - Fecha: 2026-10-13. Godot 4.7.2.stable. Código tras V2-17 (el bot responde al prompt oculto de Magic Hand).
 - Comando (142 s con `--json`): `/home/brayan/.local/bin/godot --headless --path . -s tools/sim.gd -- --games 200 --seed 1 [--json salida.json]`

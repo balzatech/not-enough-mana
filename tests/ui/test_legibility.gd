@@ -102,7 +102,6 @@ func _table(which: String, n: int, px: Vector2i) -> TableScreen:
 	_vp.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	add_child(_vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	_vp.add_child(t)
 	var ls: LocalSession = LocalSession.new()
 	ls.start(_scenario(which, n), 11)
@@ -639,7 +638,6 @@ func test_game_over_buttons_gap_at_least_button_gap_min() -> void:
 	var prev_handler: Callable = UiNav.replay_handler
 	UiNav.replay_handler = func(_t: SceneTree) -> void: pass
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.set_view(v, "p1")
 	await wait_process_frames(3)

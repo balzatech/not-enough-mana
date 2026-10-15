@@ -1,6 +1,6 @@
 extends SceneTree
 ## Deriva de OBJECT_COUNT por partida (V2-34): 10 partidas de bots SIN interfaz (solo LocalSession), liberando la sesion
-## cada vez. Si crece, la deriva viene del motor/sesion; si no, de la UI. godot --headless --path . -s tests/perf/perf_objects.gd -- 6
+## cada vez. Si crece, la deriva viene del motor/sesion; si no, de la UI. godot --headless --path . -s tools/perf/perf_objects.gd -- 6
 
 func _initialize() -> void:
 	_run.call_deferred(OS.get_cmdline_user_args())

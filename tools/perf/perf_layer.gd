@@ -1,6 +1,6 @@
-extends "res://tests/perf/perf_final.gd"
+extends "res://tools/perf/perf_final.gd"
 ## Desglose de FeedbackLayer.play (V2-34): coste de cada paso y del primer uso frente al uso con pool caliente.
-##   godot --path . -s tests/perf/perf_layer.gd -- 3 1080 1920 real 1 11
+##   godot --path . -s tools/perf/perf_layer.gd -- 3 1080 1920 real 1 11
 ## Salida "PERF {json}" con mode="layer".
 
 func _run(args: PackedStringArray) -> void:

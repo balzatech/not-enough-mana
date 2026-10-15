@@ -1,6 +1,6 @@
 # Métricas finales de v0.2 (V2-35, puerta final)
 
-Fecha 2026-10-13. Godot 4.7.2.stable, `tools/sim.gd` **sin modificar** (mtime anterior a la puerta O3). Código de bots/motor sin cambios desde V2-42 (`find src/ai src/engine data -newer docs/qa/puerta-o3.md` solo da `data/card_summaries_es.json`, que no afecta al motor). Todo lo de abajo lo ejecuté yo en esta puerta; los textos crudos y los JSON están en el scratchpad de QA (no versionados).
+Fecha 2026-10-13. Godot 4.7.2.stable, `tools/sim.gd` **sin modificar** (mtime anterior a la puerta O3). Código de bots/motor sin cambios desde V2-42 (`find src/ai src/engine data -newer docs/historico/v0.2/puerta-o3.md` solo da `data/card_summaries_es.json`, que no afecta al motor). Todo lo de abajo lo ejecuté yo en esta puerta; los textos crudos y los JSON están en el scratchpad de QA (no versionados).
 
 Comando base: `/home/brayan/.local/bin/godot --headless --path . -s tools/sim.gd -- --games 200 --seed 1` (partida `g` con semilla `1+g`, 3 + g mod 4 jugadores, bots con `randomness` 0, tope 2000 pasos).
 

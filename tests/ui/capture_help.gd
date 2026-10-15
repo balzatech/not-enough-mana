@@ -34,7 +34,6 @@ func _run(dir: String, w: int, h: int) -> void:
 	vp.queue_free()
 	var vp2: SubViewport = _vp(w, h)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	vp2.add_child(t)
 	t.set_view(Types.view_for(H.game(4, {"potion_limit_enabled": false, "start_hp": 12}, 7), "p1"), "p1")
 	for i: int in 8:

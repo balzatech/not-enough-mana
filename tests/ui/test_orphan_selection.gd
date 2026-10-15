@@ -18,7 +18,6 @@ func _view(with_prompt: bool) -> Dictionary:
 
 func _table(with_prompt: bool) -> TableScreen:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.set_view(_view(with_prompt), "p1")
 	return t

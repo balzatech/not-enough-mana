@@ -25,7 +25,6 @@ func _clock() -> int:
 
 func _table() -> TableScreen:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	return t
 

@@ -46,7 +46,6 @@ func _make(which: String, n: int) -> Control:
 	match which:
 		"table", "reaction", "pass", "prompt":
 			var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-			t.demo_when_empty = false
 			var st: Dictionary = FakeState.make_state(n)
 			if which == "reaction":
 				var deadline: int = int(Time.get_unix_time_from_system() * 1000.0) + 9000

@@ -100,7 +100,6 @@ func _run(which: String, out: String, w: int, h: int, sd: int) -> void:
 	vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	vp.add_child(t)
 	var s: Dictionary = _build(which, sd)
 	var ls: LocalSession = LocalSession.new()

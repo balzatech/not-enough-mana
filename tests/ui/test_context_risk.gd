@@ -27,7 +27,6 @@ func _state(potions: int, cfg: Dictionary = {}) -> Dictionary:
 
 func _table(s: Dictionary) -> TableScreen:
 	_t = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	_t.demo_when_empty = false
 	add_child_autofree(_t)
 	_t.set_view(Types.view_for(s, "p1"), "p1")
 	return _t

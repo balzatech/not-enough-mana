@@ -46,7 +46,6 @@ func _state(hand: Array, scroll: bool = false) -> Dictionary:
 
 func _table(s: Dictionary) -> TableScreen:
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.action_requested.connect(_on_action)
 	t.set_view(Types.view_for(s, "p1"), "p1")

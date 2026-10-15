@@ -86,7 +86,6 @@ func _table(which: String, n: int, px: Vector2i) -> TableScreen:
 	_vp.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	add_child(_vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	_vp.add_child(t)
 	var ls: LocalSession = LocalSession.new()
 	ls.start(_scenario(which, n), 21)
@@ -617,7 +616,6 @@ func _mount(s: Dictionary, px: Vector2i = BASE) -> TableScreen:
 	_vp.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	add_child(_vp)
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	_vp.add_child(t)
 	var ls: LocalSession = LocalSession.new()
 	ls.start(s, 21)

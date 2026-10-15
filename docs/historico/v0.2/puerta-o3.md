@@ -113,7 +113,7 @@ Reservas (QA-V2-32-05, informativo): (1) sigue habiendo un caso de 140 turnos co
 5. Pregunta 3 ("contra mí"): hoy basta con la etiqueta "Contra ti" del modal; está bien, pero conviene decir que con "solo los que me afectan" el recuento total será menor.
 6. Añadir el límite de pociones usado en la partida a la plantilla (hoy solo se pregunta al final).
 
-## 7. Permisos de archivos y límites (comparado con `find -newer docs/qa/puerta-o2.md`)
+## 7. Permisos de archivos y límites (comparado con `find -newer docs/historico/v0.2/puerta-o2.md`)
 
 | Tarea | Fuera de su lista | Valoración |
 |---|---|---|

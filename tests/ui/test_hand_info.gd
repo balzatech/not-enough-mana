@@ -273,7 +273,6 @@ func test_card_view_marco_y_atenuado() -> void:
 func test_mesa_resalta_y_muestra_ficha() -> void:
 	var s: Dictionary = _s3a()
 	var t: TableScreen = (load("res://src/ui/screens/table.tscn") as PackedScene).instantiate()
-	t.demo_when_empty = false
 	add_child_autofree(t)
 	t.set_view(Types.view_for(s, "p1"), "p1")
 	await wait_process_frames(2)

@@ -1,15 +1,15 @@
 # V2-20 Línea base de rendimiento de la mesa (antes de feedback animado y tema nuevo)
 
-Fecha 2026-10-13. Sin cambios de código de producción. Máquina: Godot 4.7.2, gl_compatibility, Mesa 26.0.3, AMD Radeon Vega 10 (iGPU), Wayland :0. Vsync desactivado y `max_fps=0` para medir coste real. Render a SubViewport (1080x1920 o 720x1280 con `size_2d_override` 1080x1920, como un móvil con stretch canvas_items). Semilla 11, 3 repeticiones por configuración (procesos nuevos). Datos crudos: `tests/perf/v02-base-raw.txt`.
+Fecha 2026-10-13. Sin cambios de código de producción. Máquina: Godot 4.7.2, gl_compatibility, Mesa 26.0.3, AMD Radeon Vega 10 (iGPU), Wayland :0. Vsync desactivado y `max_fps=0` para medir coste real. Render a SubViewport (1080x1920 o 720x1280 con `size_2d_override` 1080x1920, como un móvil con stretch canvas_items). Semilla 11, 3 repeticiones por configuración (procesos nuevos). Datos crudos: `tools/perf/v02-base-raw.txt` (eliminado del repositorio el 2026-10-14 por limpieza; se regenera con el comando de abajo).
 
 ## Reproducir
 ```
-DISPLAY=:0 bash tests/perf/run_v02_base.sh > /tmp/perf_v02.txt     # ~12 min, GPU real, nada más corriendo
-python3 -I tests/perf/aggregate.py /tmp/perf_v02.txt                # media, sd, min, max
+DISPLAY=:0 bash tools/perf/run_v02_base.sh > /tmp/perf_v02.txt     # ~12 min, GPU real, nada más corriendo
+python3 -I tools/perf/aggregate.py /tmp/perf_v02.txt                # media, sd, min, max
 # una sola configuración:
-DISPLAY=:0 godot --path . -s tests/perf/perf_table.gd -- <jugadores> <ancho> <alto> <real|stress> <segundos> [semilla]
+DISPLAY=:0 godot --path . -s tools/perf/perf_table.gd -- <jugadores> <ancho> <alto> <real|stress> <segundos> [semilla]
 ```
-El script `tests/perf/perf_table.gd` no empieza por `test_` ni lo recoge GUT. Monta `LocalSession.create` + `table.tscn` (como `capture_local.gd`): p1 humano (lo juega el script con `Bot.choose_action`) y el resto bots. Modo `real` = retardo de bot por defecto (600-900 ms), 30 s; `stress` = retardo 0 (una acción de bot por fotograma), 15 s.
+El script `tools/perf/perf_table.gd` no empieza por `test_` ni lo recoge GUT. Monta `LocalSession.create` + `table.tscn` (como `capture_local.gd`): p1 humano (lo juega el script con `Bot.choose_action`) y el resto bots. Modo `real` = retardo de bot por defecto (600-900 ms), 30 s; `stress` = retardo 0 (una acción de bot por fotograma), 15 s.
 
 ## Resultados (media de 3 ejecuciones; sd entre paréntesis). Ms por fotograma.
 Fotograma "activo" = el que contiene un `state_changed` (una acción aplicada y la mesa redibujada). Resto = inactivo.

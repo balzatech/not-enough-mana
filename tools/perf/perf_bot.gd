@@ -1,7 +1,7 @@
 extends SceneTree
 ## Coste por accion de bot sobre partidas completas (V2-34): decision (Bot.choose_action), validacion (Game.reduce) y
 ## paso completo de LocalSession.step_bot (decision + 2 reduce + vista/validaciones + senales sin UI).
-## No necesita GPU. godot --headless --path . -s tests/perf/perf_bot.gd -- <jugadores> <semillas> [semilla_inicial]
+## No necesita GPU. godot --headless --path . -s tools/perf/perf_bot.gd -- <jugadores> <semillas> [semilla_inicial]
 ## Salida: "PERF {json}" (mode="bot").
 
 func _initialize() -> void:

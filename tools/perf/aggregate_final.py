@@ -1,5 +1,5 @@
 """Agrega las lineas PERF de perf_final.gd: media, sd, min, max por (modo, jugadores, ancho).
-Uso: python3 -I tests/perf/aggregate_final.py salida.txt [--json]"""
+Uso: python3 -I tools/perf/aggregate_final.py salida.txt [--json]"""
 import json, sys, statistics as st, collections
 
 def flat(d, pre=""):
